@@ -6,6 +6,8 @@ import VerifyView from './components/authentication/VerifyView';
 import ResetPasswordView from './components/authentication/ResetPasswordView';
 import ChangePasswordView from './components/authentication/ChangePasswordView';
 import HomeView from './screens/HomeView';
+import NewComp from './components/NewComp';
+
 
 const createRootNavigator = signedIn => {
   StatusBar.setBarStyle('dark-content');
@@ -29,11 +31,16 @@ const createRootNavigator = signedIn => {
       },
       Home: {
         screen: HomeView
+      },
+      NewComp: {
+        screen: NewComp
       }
+
     },
     {
       headerMode: 'screen',
-      initialRouteName: signedIn ? 'Home' : 'SignIn'
+      // initialRouteName: signedIn ? 'Home' : 'SignIn'
+      initialRouteName: 'NewComp'
     }
   );
 };
