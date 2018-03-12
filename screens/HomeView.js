@@ -30,7 +30,7 @@ class HomeView extends Component {
         </TouchableHighlight>
       ),
       drawerIcon: ({ tintColor, focused }) => (
-        <FAIcon name={"list"} size={20} color={tintColor} />
+        <FAIcon name={"home"} size={20} color={tintColor} />
       )
     };
   };

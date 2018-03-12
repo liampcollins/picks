@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Provider } from "react-redux";
 import store from "./store/index";
-import createDrawer from "./screens/Drawer";
+import createNav from "./navigation/PrimaryNav";
 import Amplify, { Auth } from "aws-amplify";
 import AWSConfig from "./aws-exports";
 Amplify.configure(AWSConfig);
@@ -21,7 +21,7 @@ export default class App extends Component {
   }
 
   renderApplication() {
-    const Drawer = createDrawer(this.state.signedIn);
+    const Drawer = createNav(this.state.signedIn);
     return (
       <Provider store={store}>
         <Drawer />
