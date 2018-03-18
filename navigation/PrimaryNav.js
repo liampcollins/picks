@@ -13,7 +13,8 @@ const createNav = signedIn =>
       // Default config for all screens
       headerMode: "none",
       title: "Main",
-      initialRouteName: signedIn ? "drawerStack" : "loginStack"
+      // initialRouteName: signedIn ? "drawerStack" : "loginStack"
+      initialRouteName: "drawerStack"
     }
   );
 

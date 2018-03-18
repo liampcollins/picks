@@ -11,6 +11,8 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import { API } from "aws-amplify";
 import uniqueId from "react-native-unique-id";
 import FAIcon from "react-native-vector-icons/FontAwesome";
+import { connect } from "react-redux";
+import { userAddCompetition } from "../actions";
 
 class AddComp extends Component {
   static navigationOptions = ({ navigation }) => ({
@@ -96,24 +98,25 @@ class AddComp extends Component {
       })
       .then(() => {
         console.log(3, myInit);
-        let apiName = "CompetitionsCRUD"; // replace this with your api name.
-        let path = "/Competitions"; //replace this with the path you have configured on your API
+        let apiName = "CompetitionsCRUD";
+        let path = "/Competitions";
         API.post(apiName, path, myInit)
           .then(response => {
             console.log("COMP ADDED SUCCESS", response);
+            // this.props.userAddCompetition(response);
             // ADD COMP TO STATE
-            //     const action = {
-            //       type: "Navigation/RESET",
-            //       index: 0,
-            //       actions: [
-            //         {
-            //           type: "Navigate",
-            //           routeName: "Comp",
-            //           params: this.state.name
-            //         }
-            //       ]
-            //     };
-            //     this.props.navigation.dispatch(action);
+            // const action = {
+            //   type: "Navigation/RESET",
+            //   index: 0,
+            //   actions: [
+            //     {
+            //       type: "Navigate",
+            //       routeName: "Comp",
+            //       params: this.state.name
+            //     }
+            //   ]
+            // };
+            // this.props.navigation.dispatch(action);
           })
           .catch(err => {
             console.log("API ERROR", err);
@@ -165,4 +168,6 @@ const styles = {
   }
 };
 
-export default AddComp;
+const mapStateToProps = ({ competitions }) => ({ competitions });
+
+export default connect(mapStateToProps, { userAddCompetition })(AddComp);
