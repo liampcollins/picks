@@ -74,7 +74,6 @@ class JoinComp extends Component {
   }
 
   joinCompetition() {
-    console.log("join competition", this.state);
     let myInit = {
       response: true,
       body: {
@@ -87,7 +86,6 @@ class JoinComp extends Component {
     let path = "/Competitions/Join";
     API.post(apiName, path, myInit)
       .then(response => {
-        console.log("COMP ADDED SUCCESS", response);
         // ADD USER TO COMP STATE
         //     const action = {
         //       type: "Navigation/RESET",

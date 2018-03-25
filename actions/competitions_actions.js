@@ -1,7 +1,7 @@
 import {
   USER_JOIN_COMPETITION,
   USER_ADD_COMPETITION,
-  USER__GET_COMPETITIONS
+  USER_GET_COMPETITIONS
 } from "./types";
 
 export const userAddCompetition = payload => ({
@@ -15,6 +15,6 @@ export const userJoinCompetition = payload => ({
 });
 
 export const userGetCompetitions = payload => ({
-  type: USER__GET_COMPETITIONS,
+  type: USER_GET_COMPETITIONS,
   payload
 });

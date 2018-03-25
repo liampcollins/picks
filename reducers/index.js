@@ -1,8 +1,12 @@
 import { combineReducers } from "redux";
 import user from "./user_reducer";
 import competitions from "./competitions_reducer";
+import rounds from "./rounds_reducer";
+import teams from "./teams_reducer";
 
 export default combineReducers({
   user,
-  competitions
+  competitions,
+  rounds,
+  teams
 });

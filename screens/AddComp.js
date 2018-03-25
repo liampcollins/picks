@@ -76,7 +76,6 @@ class AddComp extends Component {
   }
 
   addCompetition() {
-    console.log("add competition", this.state);
     let myInit = {
       response: true,
       body: {
@@ -89,20 +88,16 @@ class AddComp extends Component {
     };
     uniqueId()
       .then(id => {
-        console.log(1);
         myInit.body.id = id;
         return uniqueId().then(id => {
-          console.log(2);
           myInit.body.accessToken = id.split("-")[0];
         });
       })
       .then(() => {
-        console.log(3, myInit);
         let apiName = "CompetitionsCRUD";
         let path = "/Competitions";
         API.post(apiName, path, myInit)
           .then(response => {
-            console.log("COMP ADDED SUCCESS", response);
             // this.props.userAddCompetition(response);
             // ADD COMP TO STATE
             // const action = {
