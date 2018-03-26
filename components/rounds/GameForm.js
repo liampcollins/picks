@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, View, TouchableHighlight } from "react-native";
+import { Text, View, TouchableHighlight, StyleSheet } from "react-native";
 import { Button, FormInput } from "react-native-elements";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { Dropdown } from "react-native-material-dropdown";
@@ -10,11 +10,12 @@ class GameForm extends Component {
     super(props);
     this.state = {};
   }
-
-  render() {
+   render() {
+    const { gameStyle, dropdownStyle } = styles;
     return (
-      <View>
+      <View style={gameStyle}>
         <Dropdown
+          style={dropdownStyle}
           label="Team 1..."
           onChangeText={text =>
             this.props.updateGames(this.props.game.id, "team1", text)
@@ -47,6 +48,13 @@ class GameForm extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  gameStyle: {
+  },
+  dropdownStyle: {
+  }
+});
 
 const mapStateToProps = ({ teams }) => ({ teams });
 

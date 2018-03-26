@@ -41,9 +41,9 @@ class RoundForm extends Component {
       startDateValidationError: "",
       nameValidationError: "",
       games: [
-        // this.getBlankGame(0),
-        // this.getBlankGame(1),
-        // this.getBlankGame(2),
+        this.getBlankGame(0),
+        this.getBlankGame(1),
+        this.getBlankGame(2),
         this.getBlankGame(3),
         this.getBlankGame(4)
       ],
@@ -206,16 +206,31 @@ class RoundForm extends Component {
 
   render() {
     const updateGames = this.updateGames.bind(this);
-    const { errorStyle, successStyle } = styles;
+    const {
+      errorStyle,
+      successStyle,
+      gameContainer,
+      gameStyle,
+      cardStyle
+    } = styles;
     var gamesElements = (
-      <View>
+      <View style={gameContainer}>
         {this.state.games.map((g, i) => {
-          return <GameForm key={i} game={g} updateGames={updateGames} />;
+          return (
+            <GameForm
+              style={gameStyle}
+              key={i}
+              game={g}
+              updateGames={updateGames}
+            />
+          );
         })}
       </View>
     );
     return (
-      <KeyboardAwareScrollView style={{ paddingVertical: 30 }}>
+      <KeyboardAwareScrollView
+        style={{ paddingVertical: 30, backgroundColor: "#06dddb" }}
+      >
         {this.getErrorDisplay() && (
           <View style={{ alignItems: "center" }}>
             <Text style={errorStyle}>{this.getErrorDisplay()}</Text>
@@ -226,7 +241,7 @@ class RoundForm extends Component {
             <Text style={successStyle}>{this.getSuccessDisplay()}</Text>
           </View>
         )}
-        <Card>
+        <Card style={cardStyle}>
           <FormLabel>Round name{this.state.date}</FormLabel>
           <FormInput
             placeholder="Round name..."
@@ -235,7 +250,7 @@ class RoundForm extends Component {
           />
           {gamesElements}
           <DatePicker
-            style={{ width: 300 }}
+            style={{ width: "95%" }}
             date={this.state.startDate}
             mode="date"
             placeholder="select date"
@@ -289,7 +304,12 @@ const styles = {
     color: "green",
     fontSize: 16,
     fontWeight: "bold"
-  }
+  },
+  gameContainer: {},
+  gameStyle: {
+    paddingBottom: 40
+  },
+  cardStyle: {}
 };
 
 const mapStateToProps = ({ competitions, teams }) => ({ competitions, teams });

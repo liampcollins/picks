@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { View, Text, Button, TouchableHighlight } from "react-native";
+import {
+  View,
+  Text,
+  Button,
+  TouchableHighlight,
+  StyleSheet
+} from "react-native";
 import { Card } from "react-native-elements";
 import { connect } from "react-redux";
 
@@ -9,15 +15,21 @@ class LeaderBoard extends Component {
     this.state = {};
   }
   render() {
+    const { rowStyle, headerStyle } = styles;
     return (
       <Card title="LEADERBOARD">
+        <View style={rowStyle}>
+          <Text style={headerStyle}>Player</Text>
+          <Text style={headerStyle}>Score</Text>
+        </View>
+
         {this.props.users.map((u, i) => {
           return (
-            <View key={i} style={styles.user}>
+            <View key={i} style={rowStyle}>
               <TouchableHighlight onPress={this.props.showRound}>
-                <Text style={styles.name}>{u.name}</Text>
+                <Text>{u.name}</Text>
               </TouchableHighlight>
-              <Text style={styles.name}>{u.score}</Text>
+              <Text>{u.score}</Text>
             </View>
           );
         })}
@@ -26,7 +38,20 @@ class LeaderBoard extends Component {
   }
 }
 
-const styles = {};
+const styles = StyleSheet.create({
+  rowStyle: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingLeft: 40,
+    paddingRight: 40
+  },
+  headerStyle: {
+    fontWeight: "bold",
+    textDecorationLine: "underline"
+  },
+  leftCol: {},
+  rightCol: {}
+});
 
 const mapStateToProps = ({ competitions }) => ({ competitions });
 

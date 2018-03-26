@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { Text } from "react-native-elements";
 import { connect } from "react-redux";
 import LeaderBoard from "./LeaderBoard";
@@ -19,24 +19,38 @@ class ViewComp extends Component {
     this.setState({ showingRound: !this.state.showingRound });
   }
   render() {
-    var showRound = this.showRound.bind(this);
-    var roundView = <Round showRound={showRound} />;
-    var leaderBoardView = (
+    const { containerStyle, headerStyle, leaderboardStyle } = styles;
+    const showRound = this.showRound.bind(this);
+    const roundView = <Round showRound={showRound} />;
+    const leaderBoardView = (
       <LeaderBoard
+        style={leaderboardStyle}
         showRound={showRound}
         users={this.state.competition.participants}
       />
     );
     return (
-      <View>
-        <Text style={{ paddingTop: 50 }} h2>
-          {this.state.competition.name}
-        </Text>
+      <View style={containerStyle}>
+        <Text style={headerStyle}>{this.state.competition.name}</Text>
         {this.state.showingRound ? roundView : leaderBoardView}
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  containerStyle: {
+    flex: 1
+  },
+  headerStyle: {
+    fontSize: 30,
+    marginTop: 40,
+    marginBottom: 30,
+    color: "white",
+    textAlign: "center"
+  },
+  leaderboardStyle: {}
+});
 
 const mapStateToProps = ({ competitions }) => ({ competitions });
 

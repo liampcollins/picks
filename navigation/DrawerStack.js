@@ -7,8 +7,8 @@ import JoinCompView from "../screens/JoinComp";
 import RoundFormView from "../screens/RoundForm";
 
 const DrawerStack = DrawerNavigator({
-  RoundFormView: { screen: RoundFormView },
   HomeView: { screen: HomeView },
+  RoundFormView: { screen: RoundFormView },
   AddCompView: { screen: AddCompView },
   JoinCompView: { screen: JoinCompView },
   AboutView: { screen: AboutView }

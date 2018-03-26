@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, Button } from "react-native";
+import { View, Text, Button, StyleSheet } from "react-native";
 import { Card } from "react-native-elements";
 import { connect } from "react-redux";
 
@@ -9,29 +9,41 @@ class CompetitionCard extends Component {
     this.state = {};
   }
   render() {
+    const { cardStyle, textStyle, buttonStyle } = styles;
     return (
-      <Card title="HELLO WORLD">
-        <Text style={{ marginBottom: 10 }}>
-          The idea with React Native Elements is more about component structure
-          than actual design.
+      <Card style={cardStyle} title={this.props.comp.name}>
+        <Text style={textStyle}>Created by: {this.props.comp.ownerName}</Text>
+        <Text style={textStyle}>
+          {this.props.comp.participants.length} players
         </Text>
+
         <Button
           icon={{ name: "code" }}
-          backgroundColor="#03A9F4"
           fontFamily="Lato"
-          buttonStyle={{
-            borderRadius: 0,
-            marginLeft: 0,
-            marginRight: 0,
-            marginBottom: 0
-          }}
-          title="VIEW NOW"
+          buttonStyle={buttonStyle}
+          title="VIEW COMPETITION"
           onPress={() => this.props.showComp(this.props.comp.id)}
         />
       </Card>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  cardStyle: {
+    flex: 1
+  },
+  textStyle: {
+    marginBottom: 10
+  },
+  buttonStyle: {
+    borderRadius: 0,
+    marginLeft: 0,
+    marginRight: 0,
+    marginBottom: 0,
+    backgroundColor: "#06dddb"
+  }
+});
 
 const mapStateToProps = ({ competitions }) => ({ competitions });
 

@@ -41,7 +41,7 @@ class HomeView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedComp: ""
+      selectedComp: null
     };
   }
 
@@ -76,13 +76,31 @@ class HomeView extends Component {
         console.log("API ERROR", err);
       });
   }
+
   showComp(id) {
     this.setState({ selectedComp: id });
   }
+
+  goTo(routeName) {
+    this.props.navigation.navigate(routeName);
+  }
+
   render() {
+    const {
+      homeContainer,
+      noCompsContainer,
+      noCompsText,
+      noCompsButtons,
+      noCompsTextContainer
+    } = styles;
     var showComp = this.showComp.bind(this);
     var compsList = (
-      <View style={{ alignItems: "center" }}>
+      <View
+        style={{
+          alignItems: "stretch",
+          flex: 1
+        }}
+      >
         {this.props.competitions.map(function(comp, index) {
           return (
             <CompetitionCard key={comp.id} showComp={showComp} comp={comp} />
@@ -91,13 +109,43 @@ class HomeView extends Component {
       </View>
     );
     var selectedCompComponent = (
-      <View>
-        <CompView compId={this.state.selectedComp} />
+      <View style={{ alignItems: "stretch", flex: 1 }}>
+        <CompView style={{}} compId={this.state.selectedComp} />
       </View>
     );
 
+    const noCompsView = (
+      <View style={noCompsContainer}>
+        <View style={noCompsTextContainer}>
+          <Text style={noCompsText}>
+            You currently have no active competitions. Create or join one to get
+            started!
+          </Text>
+        </View>
+        <View style={noCompsButtons}>
+          <Button
+            buttonStyle={{ marginTop: 10 }}
+            backgroundColor="white"
+            color="#06dddb"
+            title="CREATE + "
+            onPress={() => this.goTo("AddCompView")}
+          />
+          <Button
+            buttonStyle={{ marginTop: 10 }}
+            backgroundColor="white"
+            color="#06dddb"
+            title="JOIN + "
+            onPress={() => this.goTo("JoinCompView")}
+          />
+        </View>
+      </View>
+    );
     return (
-      <View>{this.state.selectedComp ? selectedCompComponent : compsList}</View>
+      <View style={homeContainer}>
+        {this.props.competitions.length
+          ? this.state.selectedComp ? selectedCompComponent : compsList
+          : noCompsView}
+      </View>
     );
   }
 
@@ -105,6 +153,33 @@ class HomeView extends Component {
     this.props.navigation.navigate("DrawerOpen");
   }
 }
+
+const styles = StyleSheet.create({
+  homeContainer: {
+    flex: 1,
+    alignItems: "stretch",
+    justifyContent: "center",
+    backgroundColor: "#06dddb",
+    paddingLeft: 40,
+    paddingRight: 40
+  },
+  noCompsContainer: {
+    flex: 1
+  },
+  noCompsTextContainer: {
+    flex: 1,
+    alignItems: "flex-end",
+    justifyContent: "center"
+  },
+  noCompsText: {
+    color: "white",
+    fontSize: 20,
+    textAlign: "center"
+  },
+  noCompsButtons: {
+    flex: 1
+  }
+});
 
 const mapStateToProps = ({ user, competitions, rounds }) => ({
   user,

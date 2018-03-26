@@ -8,8 +8,8 @@ const DrawerNavigation = StackNavigator(
   {
     headerMode: "float",
     navigationOptions: ({ navigation }) => ({
-      headerStyle: { backgroundColor: "#4C3E54" },
-      title: "Welcome!",
+      headerStyle: { backgroundColor: "#06dddb"},
+      title: "PICKS!",
       headerTintColor: "white"
     })
   }

@@ -111,7 +111,9 @@ class JoinComp extends Component {
   render() {
     const { errorStyle } = styles;
     return (
-      <KeyboardAwareScrollView style={{ paddingVertical: 30 }}>
+      <KeyboardAwareScrollView
+        style={{ paddingVertical: 30, backgroundColor: "#06dddb" }}
+      >
         {this.getErrorDisplay() && (
           <View style={{ alignItems: "center" }}>
             <Text style={errorStyle}>{this.getErrorDisplay()}</Text>
