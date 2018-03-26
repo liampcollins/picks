@@ -1,13 +1,23 @@
 import React from "react";
-import { Image, Text, View } from "react-native";
+import { Image, Text, View, TouchableHighlight } from "react-native";
 import { Card, Button } from "react-native-elements";
 import FAIcon from "react-native-vector-icons/FontAwesome";
 // import utils from '../aws/utils';
 
 class AboutView extends React.Component {
   static navigationOptions = ({ navigation }) => ({
+    title: "About",
     drawerIcon: ({ tintColor, focused }) => (
       <FAIcon name={"info"} size={20} color={tintColor} />
+    ),
+    headerLeft: (
+      <TouchableHighlight
+        style={{ paddingLeft: 10, width: 60, height: 30 }}
+        underlayColor="transparent"
+        onPress={() => navigation.navigate("DrawerOpen")}
+      >
+        <FAIcon name={"bars"} size={20} />
+      </TouchableHighlight>
     )
   });
 
