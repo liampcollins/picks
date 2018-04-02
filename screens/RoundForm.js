@@ -173,20 +173,6 @@ class RoundForm extends Component {
                 this.render();
               }
             );
-            // this.props.userAddCompetition(response);
-            // ADD ROUND TO STATE
-            // const action = {
-            //   type: "Navigation/RESET",
-            //   index: 0,
-            //   actions: [
-            //     {
-            //       type: "Navigate",
-            //       routeName: "Comp",
-            //       params: this.state.name
-            //     }
-            //   ]
-            // };
-            // this.props.navigation.dispatch(action);
           })
           .catch(err => {
             this.setState({ loading: false, error: err.message }, () => {

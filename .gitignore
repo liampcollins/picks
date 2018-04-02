@@ -24,6 +24,8 @@ aws-exports.js
 awsmobilejs/.awsmobile/backend-build
 awsmobilejs/\#current-backend-info
 awsmobilejs/backend/cloud-api/Team/node_modules
+awsmobilejs/backend/cloud-api/Competitions/node_modules
+awsmobilejs/backend/*
 ~awsmobilejs-*/
 
 ~/Documents/other/expo/login/*

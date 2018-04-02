@@ -41,17 +41,19 @@ class HomeView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedComp: null
+      selectedComp: null,
+      loading: false
     };
   }
 
   getCompetitions() {
     let apiName = "CompetitionsCRUD";
-    let path = "/Competitions/1";
+    let path = "/Competitions";
     let comps = [];
     return API.get(apiName, path).then(response => {
-      // comps = response.filter(c => c.participantIds.indexOf(this.props.user.id) >= 0);
-      comps = response;
+      comps = response.filter(
+        c => c.participantIds.indexOf(this.props.user.id) >= 0
+      );
       this.props.userGetCompetitions(comps);
     });
   }
@@ -63,10 +65,12 @@ class HomeView extends Component {
     return API.get(apiName, path).then(response => {
       rounds = response;
       this.props.userGetRounds(rounds);
+      this.setState({ loading: false });
     });
   }
 
   componentDidMount() {
+    this.setState({ loading: true });
     this.props.navigation.setParams({ burger: this.onBurger.bind(this) });
     return this.getCompetitions()
       .then(() => {
@@ -74,6 +78,7 @@ class HomeView extends Component {
       })
       .catch(err => {
         console.log("API ERROR", err);
+        this.setState({ loading: false });
       });
   }
 
@@ -94,7 +99,7 @@ class HomeView extends Component {
       noCompsTextContainer
     } = styles;
     var showComp = this.showComp.bind(this);
-    var compsList = (
+    var compsList = this.props.competitions.length ? (
       <View
         style={{
           alignItems: "stretch",
@@ -107,6 +112,8 @@ class HomeView extends Component {
           );
         })}
       </View>
+    ) : (
+      <View />
     );
     var selectedCompComponent = (
       <View style={{ alignItems: "stretch", flex: 1 }}>
@@ -140,11 +147,14 @@ class HomeView extends Component {
         </View>
       </View>
     );
+    const loadingView = <Text style={noCompsText}>Fetching your data....</Text>;
     return (
       <View style={homeContainer}>
-        {this.props.competitions.length
-          ? this.state.selectedComp ? selectedCompComponent : compsList
-          : noCompsView}
+        {this.state.loading
+          ? loadingView
+          : this.props.competitions.length
+            ? this.state.selectedComp ? selectedCompComponent : compsList
+            : noCompsView}
       </View>
     );
   }

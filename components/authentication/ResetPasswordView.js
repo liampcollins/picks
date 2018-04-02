@@ -9,6 +9,7 @@ import {
 } from "react-native-elements";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { Auth } from "aws-amplify";
+import commonStyles from "../../assets/styles/common";
 
 class ResetPasswordView extends React.Component {
   static navigationOptions = ({ navigation }) => ({
@@ -96,10 +97,10 @@ class ResetPasswordView extends React.Component {
   }
 
   render() {
-    const { errorStyles } = styles;
+    const { errorStyles, container } = styles;
 
     return (
-      <KeyboardAwareScrollView style={{ paddingVertical: 30 }}>
+      <KeyboardAwareScrollView style={container}>
         <View style={{ alignItems: "center" }}>
           <Image
             source={require("../../assets/icons/app-icon.png")}
@@ -144,6 +145,10 @@ class ResetPasswordView extends React.Component {
 }
 
 const styles = {
+  container: {
+    paddingVertical: 30,
+    backgroundColor: commonStyles.mainColor
+  },
   errorStyles: {
     paddingLeft: 10,
     paddingRight: 10,

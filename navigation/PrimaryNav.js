@@ -1,22 +1,18 @@
 import { StackNavigator } from "react-navigation";
 import LoginStack from "./LoginStack";
-import DrawerNavigation from "./DrawerNavigation";
+import createDrawerNavigation from "./DrawerNavigation";
 
-const createNav = signedIn =>
-  // const PrimaryNav = StackNavigator(
+const createNav = (signedIn, admin) =>
   StackNavigator(
     {
       loginStack: { screen: LoginStack },
-      drawerStack: { screen: DrawerNavigation }
+      drawerStack: { screen: createDrawerNavigation(admin) }
     },
     {
-      // Default config for all screens
       headerMode: "none",
       title: "Main",
-      // initialRouteName: signedIn ? "drawerStack" : "loginStack"
-      initialRouteName: "drawerStack"
+      initialRouteName: signedIn ? "drawerStack" : "loginStack"
     }
   );
 
 export default createNav;
-// export default PrimaryNav;

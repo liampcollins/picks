@@ -23,13 +23,13 @@ class LeaderBoard extends Component {
           <Text style={headerStyle}>Score</Text>
         </View>
 
-        {this.props.users.map((u, i) => {
+        {Object.keys(this.props.users).map((u, i) => {
           return (
             <View key={i} style={rowStyle}>
               <TouchableHighlight onPress={this.props.showRound}>
-                <Text>{u.name}</Text>
+                <Text>{this.props.users[u].name}</Text>
               </TouchableHighlight>
-              <Text>{u.score}</Text>
+              <Text>{this.props.users[u].score}</Text>
             </View>
           );
         })}
@@ -48,9 +48,7 @@ const styles = StyleSheet.create({
   headerStyle: {
     fontWeight: "bold",
     textDecorationLine: "underline"
-  },
-  leftCol: {},
-  rightCol: {}
+  }
 });
 
 const mapStateToProps = ({ competitions }) => ({ competitions });

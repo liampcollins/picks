@@ -76,13 +76,19 @@ class AddComp extends Component {
   }
 
   addCompetition() {
+    const participants = {};
+    participants[this.props.user.id] = {
+      name: this.props.user.username,
+      score: 0,
+      rounds: []
+    };
     let myInit = {
       response: true,
       body: {
         name: this.state.name,
-        status: 0,
-        participants: [],
-        owner: "me" //use userId
+        status: "1",
+        participantIds: [this.props.user.id],
+        owner: this.props.user.id
       },
       headers: {}
     };
@@ -98,20 +104,19 @@ class AddComp extends Component {
         let path = "/Competitions";
         API.post(apiName, path, myInit)
           .then(response => {
-            // this.props.userAddCompetition(response);
-            // ADD COMP TO STATE
-            // const action = {
-            //   type: "Navigation/RESET",
-            //   index: 0,
-            //   actions: [
-            //     {
-            //       type: "Navigate",
-            //       routeName: "Comp",
-            //       params: this.state.name
-            //     }
-            //   ]
-            // };
-            // this.props.navigation.dispatch(action);
+            this.props.userAddCompetition(response);
+            const action = {
+              type: "Navigation/RESET",
+              index: 0,
+              actions: [
+                {
+                  type: "Navigate",
+                  routeName: "Comp",
+                  params: this.state.name
+                }
+              ]
+            };
+            this.props.navigation.dispatch(action);
           })
           .catch(err => {
             console.log("API ERROR", err);

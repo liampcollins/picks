@@ -1,8 +1,13 @@
 import React from "react";
-import { Image, Text, View, TouchableHighlight } from "react-native";
+import {
+  Image,
+  Text,
+  View,
+  TouchableHighlight,
+  StyleSheet
+} from "react-native";
 import { Card, Button } from "react-native-elements";
 import FAIcon from "react-native-vector-icons/FontAwesome";
-// import utils from '../aws/utils';
 
 class AboutView extends React.Component {
   static navigationOptions = ({ navigation }) => ({
@@ -26,47 +31,44 @@ class AboutView extends React.Component {
     this.state = {};
   }
 
-  componentDidMount() {
-    // utils.getEmailUserID((err, result) => {
-    //   if (!err) {
-    //     this.setState({ userName: result.email });
-    //   }
-    // });
-  }
+  componentDidMount() {}
 
   render() {
-    console.log("rendering about");
+    const { homeContainer, container, textContainer, text } = styles;
     return (
-      <View
-        style={{
-          flex: 1,
-          backgroundColor: "#D4D4D4",
-          paddingVertical: 50,
-          alignItems: "center"
-        }}
-      >
-        <Image
-          source={require("../assets/icons/app-icon.png")}
-          style={{ width: 75, height: 75 }}
-        />
-        <Card title="About">
-          {/* <Text style={{ marginBottom: 30 }}>User: {this.state.userName}</Text> */}
-          <Text style={{ marginBottom: 30 }}>User:</Text>
-          <Button
-            backgroundColor="#03A9F4"
-            buttonStyle={{
-              borderRadius: 0,
-              marginLeft: 0,
-              marginRight: 0,
-              marginBottom: 0
-            }}
-            title="OK"
-            onPress={() => this.props.navigation.navigate("Home")}
-          />
-        </Card>
+      <View style={homeContainer}>
+        <View style={container}>
+          <View style={textContainer}>
+            <Text style={text}>Lots of text about how to play!</Text>
+          </View>
+        </View>
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  homeContainer: {
+    flex: 1,
+    alignItems: "stretch",
+    justifyContent: "center",
+    backgroundColor: "#06dddb",
+    paddingLeft: 40,
+    paddingRight: 40
+  },
+  container: {
+    flex: 1
+  },
+  textContainer: {
+    flex: 1,
+    alignItems: "flex-end",
+    justifyContent: "center"
+  },
+  text: {
+    color: "white",
+    fontSize: 20,
+    textAlign: "center"
+  }
+});
 
 export default AboutView;

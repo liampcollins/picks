@@ -9,6 +9,7 @@ import {
 } from "react-native-elements";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { Auth } from "aws-amplify";
+import commonStyles from "../../assets/styles/common";
 
 class VerifyView extends React.Component {
   static navigationOptions = ({ navigation }) => ({
@@ -77,7 +78,7 @@ class VerifyView extends React.Component {
     const action = {
       type: "Navigation/RESET",
       index: 0,
-      actions: [{ type: "Navigate", routeName: "SignIn" }]
+      actions: [{ type: "Navigate", routeName: "loginScreen" }]
     };
     this.props.navigation.dispatch(action);
   }
@@ -91,7 +92,7 @@ class VerifyView extends React.Component {
           actions: [
             {
               type: "Navigate",
-              routeName: "SignIn",
+              routeName: "loginScreen",
               params: this.state.username
             }
           ]
@@ -106,9 +107,9 @@ class VerifyView extends React.Component {
   }
 
   render() {
-    const { confirmationMessageStyle, errorMsgStyle } = styles;
+    const { confirmationMessageStyle, errorMsgStyle, container } = styles;
     return (
-      <KeyboardAwareScrollView style={{ paddingVertical: 30 }}>
+      <KeyboardAwareScrollView style={container}>
         <View style={{ alignItems: "center" }}>
           <Image
             source={require("../../assets/icons/app-icon.png")}
@@ -169,6 +170,10 @@ class VerifyView extends React.Component {
 }
 
 const styles = {
+  container: {
+    paddingVertical: 30,
+    backgroundColor: commonStyles.mainColor
+  },
   confirmationMessageStyle: {
     paddingLeft: 10,
     paddingRight: 10,

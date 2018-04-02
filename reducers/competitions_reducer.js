@@ -1,4 +1,8 @@
-import { USER_JOIN_COMPETITION, USER_ADD_COMPETITION, USER_GET_COMPETITIONS } from "../actions/types";
+import {
+  USER_JOIN_COMPETITION,
+  USER_ADD_COMPETITION,
+  USER_GET_COMPETITIONS
+} from "../actions/types";
 
 const INITIAL_STATE = [];
 

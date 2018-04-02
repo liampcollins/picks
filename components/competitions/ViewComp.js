@@ -20,14 +20,11 @@ class ViewComp extends Component {
   }
   goToSelection() {}
   render() {
-    const {
-      containerStyle,
-      headerStyle,
-      leaderboardStyle,
-      buttonStyle
-    } = styles;
+    const { containerStyle, headerStyle, buttonStyle } = styles;
     const showRound = this.showRound.bind(this);
-    const roundView = <Round showRound={showRound} />;
+    const roundView = (
+      <Round compId={this.state.competition.id} showRound={showRound} />
+    );
     const leaderBoardView = (
       <LeaderBoard
         style={leaderboardStyle}
@@ -35,9 +32,11 @@ class ViewComp extends Component {
         users={this.state.competition.participants}
       />
     );
+    const codeInfo = <Text>Competition Code {this.state.competition.id}</Text>;
     return (
       <View style={containerStyle}>
         <Text style={headerStyle}>{this.state.competition.name}</Text>
+        {this.props.user.admin && codeInfo}
         {this.state.showingRound ? roundView : leaderBoardView}
         <Button
           icon={{ name: "code" }}
@@ -62,12 +61,12 @@ const styles = StyleSheet.create({
     color: "white",
     textAlign: "center"
   },
-  leaderboardStyle: {},
   buttonStyle: {
-    backgroundColor: "white"
+    backgroundColor: "white",
+    width: "70%"
   }
 });
 
-const mapStateToProps = ({ competitions }) => ({ competitions });
+const mapStateToProps = ({ competitions, user }) => ({ competitions, user });
 
 export default connect(mapStateToProps, {})(ViewComp);

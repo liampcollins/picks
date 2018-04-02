@@ -86,19 +86,18 @@ class JoinComp extends Component {
     let path = "/Competitions/Join";
     API.post(apiName, path, myInit)
       .then(response => {
-        // ADD USER TO COMP STATE
-        //     const action = {
-        //       type: "Navigation/RESET",
-        //       index: 0,
-        //       actions: [
-        //         {
-        //           type: "Navigate",
-        //           routeName: "Comp",
-        //           params: this.state.name
-        //         }
-        //       ]
-        //     };
-        //     this.props.navigation.dispatch(action);
+        const action = {
+          type: "Navigation/RESET",
+          index: 0,
+          actions: [
+            {
+              type: "Navigate",
+              routeName: "Comp",
+              params: this.state.name
+            }
+          ]
+        };
+        this.props.navigation.dispatch(action);
       })
       .catch(err => {
         console.log("API ERROR", err);

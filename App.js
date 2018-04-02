@@ -13,7 +13,7 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    this.setState({ signedIn: store.getState().user.isSignedIn, ready: true });
+    this.setState({ signedIn: store.getState().user.isSignedIn, admin: store.getState().user.admin, ready: true });
   }
 
   renderWaiting() {
@@ -21,7 +21,7 @@ export default class App extends Component {
   }
 
   renderApplication() {
-    const Drawer = createNav(this.state.signedIn);
+    const Drawer = createNav(this.state.signedIn, this.state.admin);
     return (
       <Provider store={store}>
         <Drawer />

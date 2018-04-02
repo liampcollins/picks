@@ -10,12 +10,10 @@ class GameForm extends Component {
     super(props);
     this.state = {};
   }
-   render() {
-    const { gameStyle, dropdownStyle } = styles;
+  render() {
     return (
-      <View style={gameStyle}>
+      <View>
         <Dropdown
-          style={dropdownStyle}
           label="Team 1..."
           onChangeText={text =>
             this.props.updateGames(this.props.game.id, "team1", text)
@@ -29,32 +27,10 @@ class GameForm extends Component {
           }
           data={this.props.teams}
         />
-
-        {/* <FormInput
-          placeholder="Team 1..."
-          value={this.state.team1}
-          onChangeText={text =>
-            this.props.updateGames(this.props.game.id, "team1", text)
-          }
-        />
-        <FormInput
-          placeholder="Team 2..."
-          value={this.state.team2}
-          onChangeText={text =>
-            this.props.updateGames(this.props.game.id, "team2", text)
-          }
-        /> */}
       </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  gameStyle: {
-  },
-  dropdownStyle: {
-  }
-});
 
 const mapStateToProps = ({ teams }) => ({ teams });
 

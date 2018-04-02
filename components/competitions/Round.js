@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { Card, Input } from "react-native-elements";
 import { connect } from "react-redux";
+import { API } from "aws-amplify";
 
 class Round extends Component {
   constructor(props) {
@@ -22,7 +23,7 @@ class Round extends Component {
 
   getBlankSelection() {
     return (selection = this.props.rounds[0].games.map(g => {
-      return {};
+      return { id: g.id };
     }));
   }
 
@@ -73,13 +74,14 @@ class Round extends Component {
       response: true,
       body: {
         selection: this.state.selection,
-        round: this.props.rounds[0].id,
-        user: "1" //use userId
+        roundId: this.props.rounds[0].id,
+        userId: "eu-west-1:330709cc-51ac-4f11-99fd-f910d4fd045a", //use userId,
+        compId: this.props.compId
       },
       headers: {}
     };
     let apiName = "CompetitionsCRUD";
-    let path = "/Competitions/AddSelection";
+    let path = "/Competitions/AddRound";
     API.post(apiName, path, myInit)
       .then(response => {
         this.setState({ loading: false }, () => {
@@ -95,38 +97,63 @@ class Round extends Component {
   }
 
   render() {
-    const { buttonStyle, errorStyle } = styles;
+    const {
+      buttonStyle,
+      errorStyle,
+      gameStyle,
+      inputStyle,
+      labelStyle,
+      rightLabel
+    } = styles;
     const round = this.props.rounds[0];
     return (
       <Card title={round.name}>
         {this.getErrorDisplay() && (
-          <View style={errorStyle}>
-            <Text>{this.getErrorDisplay()}</Text>
+          <View style={{ alignItems: "center" }}>
+            <Text style={errorStyle}>{this.getErrorDisplay()}</Text>
           </View>
         )}
+
         {round.games.map((g, i) => {
           return (
-            <View key={i} style={styles.user}>
-              <Text style={styles.name}>{g.team1}</Text>
+            <View key={i} style={gameStyle}>
+              <Text style={labelStyle}>{g.team1}</Text>
               <TextInput
-                style={styles.textInput}
+                style={inputStyle}
                 keyboardType="numeric"
                 onChangeText={text =>
-                  this.updateSelection(g.id, "team1", "goals", text)
+                  this.updateSelection(g.id, g.team1, "goals", parseInt(text))
                 }
-                // value={this.state.myNumber}
-                maxLength={3} //setting limit of input
+                maxLength={2}
               />
-              <Text style={styles.name}>{g.team2}</Text>
+              <Text> - </Text>
               <TextInput
-                style={styles.textInput}
+                style={inputStyle}
                 keyboardType="numeric"
                 onChangeText={text =>
-                  this.updateSelection(g.id, "team1", "goals", text)
+                  this.updateSelection(g.id, g.team1, "points", parseInt(text))
                 }
-                // value={this.state.myNumber}
-                maxLength={3} //setting limit of input
+                maxLength={2}
               />
+              <Text> | </Text>
+              <TextInput
+                style={inputStyle}
+                keyboardType="numeric"
+                onChangeText={text =>
+                  this.updateSelection(g.id, g.team2, "goals", parseInt(text))
+                }
+                maxLength={2}
+              />
+              <Text> - </Text>
+              <TextInput
+                style={inputStyle}
+                keyboardType="numeric"
+                onChangeText={text =>
+                  this.updateSelection(g.id, g.team2, "points", parseInt(text))
+                }
+                maxLength={2}
+              />
+              <Text style={[labelStyle, rightLabel]}>{g.team2}</Text>
             </View>
           );
         })}
@@ -146,8 +173,24 @@ class Round extends Component {
 
 const styles = StyleSheet.create({
   buttonStyle: {
-    backgroundColor: "white",
+    backgroundColor: "#06dddb",
+    color: "white",
     alignItems: "center"
+  },
+  gameStyle: {
+    flexDirection: "row"
+  },
+  inputStyle: {
+    flex: 1,
+    borderWidth: 1,
+    borderColor: "#06dddb",
+    width: 26
+  },
+  labelStyle: {
+    width: 80
+  },
+  rightLabel: {
+    textAlign: "right"
   },
   errorStyle: {
     paddingLeft: 10,

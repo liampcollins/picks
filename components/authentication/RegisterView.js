@@ -9,6 +9,7 @@ import {
 } from "react-native-elements";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { Auth } from "aws-amplify";
+import commonStyles from "../../assets/styles/common";
 
 class RegisterView extends React.Component {
   static navigationOptions = ({ navigation }) => ({
@@ -118,14 +119,13 @@ class RegisterView extends React.Component {
       }
     })
       .then(() => {
-        console.log("success registering");
         const action = {
           type: "Navigation/RESET",
           index: 0,
           actions: [
             {
               type: "Navigate",
-              routeName: "Verify",
+              routeName: "verifyScreen",
               params: this.username
             }
           ]
@@ -141,9 +141,9 @@ class RegisterView extends React.Component {
   }
 
   render() {
-    const { errorStyle } = styles;
+    const { errorStyle, container } = styles;
     return (
-      <KeyboardAwareScrollView style={{ paddingVertical: 30 }}>
+      <KeyboardAwareScrollView style={container}>
         <View style={{ alignItems: "center" }}>
           <Image
             source={require("../../assets/icons/app-icon.png")}
@@ -206,14 +206,14 @@ class RegisterView extends React.Component {
             backgroundColor="transparent"
             textStyle={{ color: "#03A9F4" }}
             title="Sign In"
-            onPress={() => this.goTo("SignIn")}
+            onPress={() => this.goTo("loginScreen")}
           />
           <Button
             buttonStyle={{ marginTop: 0 }}
             backgroundColor="transparent"
             textStyle={{ color: "#03A9F4" }}
             title="Confirm Registration"
-            onPress={() => this.goTo("Verify")}
+            onPress={() => this.goTo("verifyScreen")}
           />
         </Card>
       </KeyboardAwareScrollView>
@@ -221,6 +221,10 @@ class RegisterView extends React.Component {
   }
 }
 const styles = {
+  container: {
+    paddingVertical: 30,
+    backgroundColor: commonStyles.mainColor
+  },
   errorStyle: {
     paddingLeft: 10,
     paddingRight: 10,

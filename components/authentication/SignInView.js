@@ -11,6 +11,7 @@ import { connect } from "react-redux";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { Auth } from "aws-amplify";
 import { userLoggedIn } from "../../actions";
+import commonStyles from "../../assets/styles/common";
 
 export class SignInView extends Component {
   static navigationOptions = ({ navigation }) => ({
@@ -83,7 +84,7 @@ export class SignInView extends Component {
     const action = {
       type: "Navigation/RESET",
       index: 0,
-      actions: [{ type: "Navigate", routeName: "Register" }]
+      actions: [{ type: "Navigate", routeName: "signupScreen" }]
     };
     this.props.navigation.dispatch(action);
   }
@@ -100,14 +101,17 @@ export class SignInView extends Component {
   signInUser() {
     this.setState({ loading: true }, () => {
       // This call to setTimeout is required to give the view time to render
-      const updateEmail = this.props.userLoggedIn;
+      const updateUser = this.props.userLoggedIn;
       setTimeout(() => {
         Auth.signIn(this.state.email, this.state.password)
           .then(res => {
-            updateEmail(res.username);
-            this.props.navigation.navigate("Home");
+            Auth.currentUserInfo().then(user => {
+              updateUser(user);
+              this.props.navigation.navigate("drawerStack");
+            });
           })
           .catch(err => {
+            console.log("err", err);
             this.setState({ loading: false, error: err.message }, () => {
               this.render();
             });
@@ -117,9 +121,9 @@ export class SignInView extends Component {
   }
 
   render() {
-    const { errorMsgStyle } = styles;
+    const { errorMsgStyle, container } = styles;
     return (
-      <KeyboardAwareScrollView style={{ paddingVertical: 30 }}>
+      <KeyboardAwareScrollView style={container}>
         <View style={{ alignItems: "center" }}>
           <Image
             source={require("../../assets/icons/app-icon.png")}
@@ -188,6 +192,10 @@ const styles = {
     color: "red",
     fontSize: 16,
     fontWeight: "bold"
+  },
+  container: {
+    paddingVertical: 30,
+    backgroundColor: commonStyles.mainColor
   }
 };
 

@@ -14,7 +14,7 @@ class CompetitionCard extends Component {
       <Card style={cardStyle} title={this.props.comp.name}>
         <Text style={textStyle}>Created by: {this.props.comp.ownerName}</Text>
         <Text style={textStyle}>
-          {this.props.comp.participants.length} players
+          {this.props.comp.participantIds.length} players
         </Text>
 
         <Button
