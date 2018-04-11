@@ -15,6 +15,7 @@ import { connect } from "react-redux";
 import { addRound, userGetTeams } from "../actions";
 import GameForm from "../components/rounds/GameForm";
 import DatePicker from "react-native-datepicker";
+import commonStyles from "../assets/styles/common";
 
 class RoundForm extends Component {
   static navigationOptions = ({ navigation }) => ({
@@ -193,6 +194,7 @@ class RoundForm extends Component {
   render() {
     const updateGames = this.updateGames.bind(this);
     const {
+      containerStyle,
       errorStyle,
       successStyle,
       gameContainer,
@@ -214,9 +216,7 @@ class RoundForm extends Component {
       </View>
     );
     return (
-      <KeyboardAwareScrollView
-        style={{ paddingVertical: 30, backgroundColor: "#06dddb" }}
-      >
+      <KeyboardAwareScrollView style={containerStyle}>
         {this.getErrorDisplay() && (
           <View style={{ alignItems: "center" }}>
             <Text style={errorStyle}>{this.getErrorDisplay()}</Text>
@@ -275,6 +275,10 @@ class RoundForm extends Component {
 }
 
 const styles = {
+  containerStyle: {
+    paddingVertical: 30,
+    backgroundColor: commonStyles.mainColor
+  },
   errorStyle: {
     paddingLeft: 10,
     paddingRight: 10,

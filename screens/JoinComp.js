@@ -11,6 +11,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import { API } from "aws-amplify";
 import EIcon from "react-native-vector-icons/Entypo";
 import FAIcon from "react-native-vector-icons/FontAwesome";
+import commonStyles from "../assets/styles/common";
 
 class JoinComp extends Component {
   static navigationOptions = ({ navigation }) => ({
@@ -108,11 +109,9 @@ class JoinComp extends Component {
   }
 
   render() {
-    const { errorStyle } = styles;
+    const { errorStyle, containerStyle } = styles;
     return (
-      <KeyboardAwareScrollView
-        style={{ paddingVertical: 30, backgroundColor: "#06dddb" }}
-      >
+      <KeyboardAwareScrollView style={containerStyle}>
         {this.getErrorDisplay() && (
           <View style={{ alignItems: "center" }}>
             <Text style={errorStyle}>{this.getErrorDisplay()}</Text>
@@ -141,6 +140,10 @@ class JoinComp extends Component {
 }
 
 const styles = {
+  containerStyle: {
+    paddingVertical: 30,
+    backgroundColor: commonStyles.mainColor
+  },
   errorStyle: {
     paddingLeft: 10,
     paddingRight: 10,

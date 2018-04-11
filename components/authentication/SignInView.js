@@ -121,7 +121,7 @@ export class SignInView extends Component {
   }
 
   render() {
-    const { errorMsgStyle, container } = styles;
+    const { container } = styles;
     return (
       <KeyboardAwareScrollView style={container}>
         <View style={{ alignItems: "center" }}>
@@ -132,7 +132,9 @@ export class SignInView extends Component {
         </View>
         <View style={{ alignItems: "center" }}>
           {this.getErrorDisplay() && (
-            <Text style={errorMsgStyle}>{this.getErrorDisplay()}</Text>
+            <Text style={commonStyles.authErrorStyle}>
+              {this.getErrorDisplay()}
+            </Text>
           )}
         </View>
         <Card>
@@ -185,14 +187,6 @@ export class SignInView extends Component {
 }
 
 const styles = {
-  errorMsgStyle: {
-    paddingLeft: 10,
-    paddingRight: 10,
-    paddingTop: 30,
-    color: "red",
-    fontSize: 16,
-    fontWeight: "bold"
-  },
   container: {
     paddingVertical: 30,
     backgroundColor: commonStyles.mainColor

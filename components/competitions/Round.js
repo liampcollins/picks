@@ -10,6 +10,7 @@ import {
 import { Card, Input } from "react-native-elements";
 import { connect } from "react-redux";
 import { API } from "aws-amplify";
+import commonStyles from "../../assets/styles/common";
 
 class Round extends Component {
   constructor(props) {
@@ -173,7 +174,7 @@ class Round extends Component {
 
 const styles = StyleSheet.create({
   buttonStyle: {
-    backgroundColor: "#06dddb",
+    backgroundColor: commonStyles.mainColor,
     color: "white",
     alignItems: "center"
   },
@@ -183,7 +184,7 @@ const styles = StyleSheet.create({
   inputStyle: {
     flex: 1,
     borderWidth: 1,
-    borderColor: "#06dddb",
+    borderColor: commonStyles.mainColor,
     width: 26
   },
   labelStyle: {

@@ -141,7 +141,7 @@ class RegisterView extends React.Component {
   }
 
   render() {
-    const { errorStyle, container } = styles;
+    const { container } = styles;
     return (
       <KeyboardAwareScrollView style={container}>
         <View style={{ alignItems: "center" }}>
@@ -152,7 +152,9 @@ class RegisterView extends React.Component {
         </View>
         {this.getErrorDisplay() && (
           <View style={{ alignItems: "center" }}>
-            <Text style={errorStyle}>{this.getErrorDisplay()}</Text>
+            <Text style={commonStyles.authErrorStyle}>
+              {this.getErrorDisplay()}
+            </Text>
           </View>
         )}
         <Card>
@@ -224,14 +226,6 @@ const styles = {
   container: {
     paddingVertical: 30,
     backgroundColor: commonStyles.mainColor
-  },
-  errorStyle: {
-    paddingLeft: 10,
-    paddingRight: 10,
-    paddingTop: 30,
-    color: "red",
-    fontSize: 16,
-    fontWeight: "bold"
   }
 };
 

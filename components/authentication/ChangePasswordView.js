@@ -144,7 +144,7 @@ class ChangePasswordView extends React.Component {
   }
 
   render() {
-    const { errorMsgStyle, container } = styles;
+    const { container } = styles;
     return (
       <KeyboardAwareScrollView style={container}>
         <View style={{ alignItems: "center" }}>
@@ -155,7 +155,9 @@ class ChangePasswordView extends React.Component {
         </View>
         {this.getErrorDisplay() && (
           <View style={{ alignItems: "center" }}>
-            <Text style={errorMsgStyle}>{this.getErrorDisplay()}</Text>
+            <Text style={commonStyles.authErrorStyle}>
+              {this.getErrorDisplay()}
+            </Text>
           </View>
         )}
         <Card>
@@ -222,14 +224,6 @@ const styles = {
   container: {
     paddingVertical: 30,
     backgroundColor: commonStyles.mainColor
-  },
-  errorMsgStyle: {
-    paddingLeft: 10,
-    paddingRight: 10,
-    paddingTop: 30,
-    color: "red",
-    fontSize: 16,
-    fontWeight: "bold"
   }
 };
 

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, View, TouchableHighlight } from "react-native";
+import { Text, View, TouchableHighlight, StyleSheet } from "react-native";
 import {
   Button,
   Card,
@@ -128,11 +128,9 @@ class AddComp extends Component {
   }
 
   render() {
-    const { errorStyle } = styles;
+    const { errorStyle, containerStyle } = styles;
     return (
-      <KeyboardAwareScrollView
-        style={{ paddingVertical: 30, backgroundColor: "#06dddb" }}
-      >
+      <KeyboardAwareScrollView style={containerStyle}>
         {this.getErrorDisplay() && (
           <View style={{ alignItems: "center" }}>
             <Text style={errorStyle}>{this.getErrorDisplay()}</Text>
@@ -159,7 +157,11 @@ class AddComp extends Component {
   }
 }
 
-const styles = {
+const styles = StyleSheet.create({
+  containerStyle: {
+    paddingVertical: 30,
+    backgroundColor: commonStyles.mainColor
+  },
   errorStyle: {
     paddingLeft: 10,
     paddingRight: 10,
@@ -168,7 +170,7 @@ const styles = {
     fontSize: 16,
     fontWeight: "bold"
   }
-};
+});
 
 const mapStateToProps = ({ competitions }) => ({ competitions });
 

@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { Card, Button } from "react-native-elements";
 import FAIcon from "react-native-vector-icons/FontAwesome";
+import commonStyles from "../../assets/styles/common";
 
 class AboutView extends React.Component {
   static navigationOptions = ({ navigation }) => ({
@@ -52,7 +53,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "stretch",
     justifyContent: "center",
-    backgroundColor: "#06dddb",
+    backgroundColor: commonStyles.mainColor,
     paddingLeft: 40,
     paddingRight: 40
   },

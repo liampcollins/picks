@@ -1,5 +1,6 @@
 import { StackNavigator } from "react-navigation";
 import DrawerStack from "./DrawerStack";
+import commonStyles from "../assets/styles/common";
 
 const createDrawerNavigation = admin =>
   StackNavigator(
@@ -9,7 +10,7 @@ const createDrawerNavigation = admin =>
     {
       headerMode: "float",
       navigationOptions: ({ navigation }) => ({
-        headerStyle: { backgroundColor: "#06dddb" },
+        headerStyle: { backgroundColor: commonStyles.mainColor },
         title: "PICKS!",
         headerTintColor: "white"
       })

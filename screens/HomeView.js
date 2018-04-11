@@ -14,6 +14,7 @@ import uniqueId from "react-native-unique-id";
 import { userGetCompetitions, userGetRounds } from "../actions";
 import CompView from "../components/competitions/ViewComp";
 import CompetitionCard from "../components/competitions/CompetitionCard";
+import commonStyles from "../assets/styles/common";
 
 class HomeView extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -96,16 +97,13 @@ class HomeView extends Component {
       noCompsContainer,
       noCompsText,
       noCompsButtons,
-      noCompsTextContainer
+      noCompsTextContainer,
+      compsListContainer,
+      selectedCompContainer
     } = styles;
     var showComp = this.showComp.bind(this);
     var compsList = this.props.competitions.length ? (
-      <View
-        style={{
-          alignItems: "stretch",
-          flex: 1
-        }}
-      >
+      <View style={compsListContainer}>
         {this.props.competitions.map(function(comp, index) {
           return (
             <CompetitionCard key={comp.id} showComp={showComp} comp={comp} />
@@ -116,7 +114,7 @@ class HomeView extends Component {
       <View />
     );
     var selectedCompComponent = (
-      <View style={{ alignItems: "stretch", flex: 1 }}>
+      <View style={selectedCompContainer}>
         <CompView style={{}} compId={this.state.selectedComp} />
       </View>
     );
@@ -133,14 +131,14 @@ class HomeView extends Component {
           <Button
             buttonStyle={{ marginTop: 10 }}
             backgroundColor="white"
-            color="#06dddb"
+            color={commonStyles.mainColor}
             title="CREATE + "
             onPress={() => this.goTo("AddCompView")}
           />
           <Button
             buttonStyle={{ marginTop: 10 }}
             backgroundColor="white"
-            color="#06dddb"
+            color={commonStyles.mainColor}
             title="JOIN + "
             onPress={() => this.goTo("JoinCompView")}
           />
@@ -169,7 +167,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "stretch",
     justifyContent: "center",
-    backgroundColor: "#06dddb",
+    backgroundColor: commonStyles.mainColor,
     paddingLeft: 40,
     paddingRight: 40
   },
@@ -187,6 +185,14 @@ const styles = StyleSheet.create({
     textAlign: "center"
   },
   noCompsButtons: {
+    flex: 1
+  },
+  compsListContainer: {
+    alignItems: "stretch",
+    flex: 1
+  },
+  selectedCompContainer: {
+    alignItems: "stretch",
     flex: 1
   }
 });

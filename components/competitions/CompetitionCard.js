@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
 import { Card } from "react-native-elements";
 import { connect } from "react-redux";
+import commonStyles from "../../assets/styles/common";
 
 class CompetitionCard extends Component {
   constructor(props) {
@@ -41,7 +42,7 @@ const styles = StyleSheet.create({
     marginLeft: 0,
     marginRight: 0,
     marginBottom: 0,
-    backgroundColor: "#06dddb"
+    backgroundColor: commonStyles.mainColor
   }
 });
 

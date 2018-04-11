@@ -107,7 +107,7 @@ class VerifyView extends React.Component {
   }
 
   render() {
-    const { confirmationMessageStyle, errorMsgStyle, container } = styles;
+    const { confirmationMessageStyle, container } = styles;
     return (
       <KeyboardAwareScrollView style={container}>
         <View style={{ alignItems: "center" }}>
@@ -123,7 +123,9 @@ class VerifyView extends React.Component {
         </View>
         <View style={{ alignItems: "center" }}>
           {this.getErrorDisplay() && (
-            <Text style={errorMsgStyle}>{this.getErrorDisplay()}</Text>
+            <Text style={commonStyles.authErrorStyle}>
+              {this.getErrorDisplay()}
+            </Text>
           )}
         </View>
         <Card>
@@ -179,14 +181,6 @@ const styles = {
     paddingRight: 10,
     paddingTop: 30,
     fontSize: 16
-  },
-  errorMsgStyle: {
-    paddingLeft: 10,
-    paddingRight: 10,
-    paddingTop: 30,
-    color: "red",
-    fontSize: 16,
-    fontWeight: "bold"
   }
 };
 export default VerifyView;
