@@ -1,20 +1,20 @@
-import React from 'react';
-import { Dimensions, Image, Platform, StyleSheet, View } from 'react-native';
-import { DrawerNavigator, DrawerItems } from 'react-navigation';
-import FAIcon from 'react-native-vector-icons/FontAwesome';
-import createRootNavigator from '../MainNavStack';
-import AboutView from '../components/AboutView';
-import SignOutView from '../components/authentication/SignOutView';
+import React from "react";
+import { Dimensions, Image, Platform, StyleSheet, View } from "react-native";
+import { DrawerNavigator, DrawerItems } from "react-navigation";
+import FAIcon from "react-native-vector-icons/FontAwesome";
+import createRootNavigator from "../MainNavStack";
+import AboutView from "../components/AboutView";
+import SignOutView from "../components/authentication/SignOutView";
 
-const SCREEN_WIDTH = Dimensions.get('window').width;
+const SCREEN_WIDTH = Dimensions.get("window").width;
 
 const CustomDrawerContentComponent = props => (
-  <View style={{ flex: 1, backgroundColor: '#d4d4d4' }}>
+  <View style={{ flex: 1, backgroundColor: "red" }}>
     <View
-      style={{ marginTop: 40, justifyContent: 'center', alignItems: 'center' }}
+      style={{ marginTop: 40, justifyContent: "center", alignItems: "center" }}
     >
       <Image
-        source={require('../assets/icons/app-icon.png')}
+        source={require("../assets/icons/app-icon.png")}
         style={{ width: 75, height: 75 }}
         resizeMode="contain"
       />
@@ -37,11 +37,11 @@ const createDrawer = signedIn =>
       }
     },
     {
-      initialRouteName: 'Main',
+      initialRouteName: "Main",
       contentOptions: {
-        activeTintColor: '#03A9F4'
+        activeTintColor: "#03A9F4"
       },
-      drawerWidth: SCREEN_WIDTH * 0.6,
+      drawerWidth: SCREEN_WIDTH * 0.2,
       contentComponent: CustomDrawerContentComponent
     }
   );

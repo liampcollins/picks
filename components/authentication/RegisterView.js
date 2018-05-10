@@ -141,91 +141,106 @@ class RegisterView extends React.Component {
   }
 
   render() {
-    const { container } = styles;
+    const { container, formContainer } = styles;
     return (
-      <KeyboardAwareScrollView style={container}>
-        <View style={{ alignItems: "center" }}>
-          <Image
-            source={require("../../assets/icons/app-icon.png")}
-            style={{ width: 75, height: 75 }}
-          />
-        </View>
-        {this.getErrorDisplay() && (
+      <View style={container}>
+        <KeyboardAwareScrollView>
           <View style={{ alignItems: "center" }}>
-            <Text style={commonStyles.authErrorStyle}>
-              {this.getErrorDisplay()}
-            </Text>
+            <Image
+              source={require("../../assets/icons/app-icon.png")}
+              style={{ width: 75, height: 75 }}
+            />
           </View>
-        )}
-        <Card>
-          <FormLabel>Username</FormLabel>
-          <FormInput
-            placeholder="Username..."
-            autoCapitalize="none"
-            value={this.state.username}
-            onChangeText={text => this.setFieldState("username", text)}
-          />
-          <FormLabel>Email</FormLabel>
-          <FormInput
-            placeholder="Email address..."
-            value={this.state.email}
-            onChangeText={text => this.setFieldState("email", text)}
-          />
-          <FormValidationMessage>
-            {this.state.emailValidationError}
-          </FormValidationMessage>
-          <FormLabel>Password</FormLabel>
-          <FormInput
-            secureTextEntry
-            placeholder="Password..."
-            value={this.state.password}
-            onChangeText={text => this.setFieldState("password", text)}
-          />
-          <FormValidationMessage>
-            {this.state.passwordValidationError}
-          </FormValidationMessage>
-          <FormLabel>Confirm Password</FormLabel>
-          <FormInput
-            secureTextEntry
-            placeholder="Confirm Password..."
-            value={this.state.confirmPassword}
-            onChangeText={text => this.setFieldState("confirmPassword", text)}
-          />
-          <FormValidationMessage>
-            {this.state.confirmPasswordValidationError}
-          </FormValidationMessage>
+          {this.getErrorDisplay() && (
+            <View style={{ alignItems: "center" }}>
+              <Text style={commonStyles.authErrorStyle}>
+                {this.getErrorDisplay()}
+              </Text>
+            </View>
+          )}
+          <View style={formContainer}>
+            <FormLabel>Username</FormLabel>
+            <FormInput
+              placeholder="Username..."
+              autoCapitalize="none"
+              value={this.state.username}
+              onChangeText={text => this.setFieldState("username", text)}
+            />
+            <FormLabel>Email</FormLabel>
+            <FormInput
+              placeholder="Email address..."
+              value={this.state.email}
+              onChangeText={text => this.setFieldState("email", text)}
+            />
+            <FormValidationMessage>
+              {this.state.emailValidationError}
+            </FormValidationMessage>
+            <FormLabel>Password</FormLabel>
+            <FormInput
+              secureTextEntry
+              placeholder="Password..."
+              value={this.state.password}
+              onChangeText={text => this.setFieldState("password", text)}
+            />
+            <FormValidationMessage>
+              {this.state.passwordValidationError}
+            </FormValidationMessage>
+            <FormLabel>Confirm Password</FormLabel>
+            <FormInput
+              secureTextEntry
+              placeholder="Confirm Password..."
+              value={this.state.confirmPassword}
+              onChangeText={text => this.setFieldState("confirmPassword", text)}
+            />
+            <FormValidationMessage>
+              {this.state.confirmPasswordValidationError}
+            </FormValidationMessage>
 
-          <Button
-            disabled={!this.getButtonState()}
-            buttonStyle={{ marginTop: 10 }}
-            backgroundColor="#03A9F4"
-            title="Register"
-            loading={this.state.loading}
-            onPress={() => this.registerUser()}
-          />
-          <Button
-            buttonStyle={{ marginTop: 0 }}
-            backgroundColor="transparent"
-            textStyle={{ color: "#03A9F4" }}
-            title="Sign In"
-            onPress={() => this.goTo("loginScreen")}
-          />
-          <Button
-            buttonStyle={{ marginTop: 0 }}
-            backgroundColor="transparent"
-            textStyle={{ color: "#03A9F4" }}
-            title="Confirm Registration"
-            onPress={() => this.goTo("verifyScreen")}
-          />
-        </Card>
-      </KeyboardAwareScrollView>
+            <Button
+              disabled={!this.getButtonState()}
+              buttonStyle={{ marginTop: 10 }}
+              disabledStyle={commonStyles.buttonStyles.disabledStyle}
+              disabledTextStyle={commonStyles.buttonStyles.disabledTextStyle}
+              backgroundColor={commonStyles.buttonStyles.backgound}
+              color={commonStyles.buttonStyles.color}
+              title="Register"
+              loading={this.state.loading}
+              onPress={() => this.registerUser()}
+            />
+            <Button
+              buttonStyle={{ marginTop: 10 }}
+              disabledStyle={commonStyles.buttonStyles.disabledStyle}
+              disabledTextStyle={commonStyles.buttonStyles.disabledTextStyle}
+              backgroundColor={commonStyles.buttonStyles.backgound}
+              color={commonStyles.buttonStyles.color}
+              title="Sign In"
+              onPress={() => this.goTo("loginScreen")}
+            />
+            <Button
+              buttonStyle={{ marginTop: 10 }}
+              disabledStyle={commonStyles.buttonStyles.disabledStyle}
+              disabledTextStyle={commonStyles.buttonStyles.disabledTextStyle}
+              backgroundColor={commonStyles.buttonStyles.backgound}
+              color={commonStyles.buttonStyles.color}
+              title="Confirm Registration"
+              onPress={() => this.goTo("verifyScreen")}
+            />
+          </View>
+        </KeyboardAwareScrollView>
+      </View>
     );
   }
 }
 const styles = {
   container: {
-    paddingVertical: 30,
+    // flex: 1,
+    paddingTop: 50,
+    paddingBottom: 50,
     backgroundColor: commonStyles.mainColor
+  },
+  formContainer: {
+    width: "90%",
+    paddingLeft: "5%"
   }
 };
 

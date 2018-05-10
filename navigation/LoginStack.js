@@ -7,7 +7,7 @@ import ChangePasswordView from "../components/authentication/ChangePasswordView"
 
 const LoginStack = StackNavigator(
   {
-    loginScreen: { screen: SignInView },
+    // loginScreen: { screen: SignInView },
     signupScreen: { screen: RegisterView },
     verifyScreen: { screen: VerifyView },
     resetPasswordScreen: {

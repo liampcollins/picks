@@ -1,7 +1,8 @@
 export default {
-  mainColor: "#06dddb", //#1b5a63
+  // mainColor: "#06dddb", //#1b5a63
+  mainColor: "#328692",
   secondaryColor: "#252932",
-  thirdColor: "#f3706a",
+  thirdColor: "#f56f6b",
   fontMainColor: "#fdffff",
   fontSecondaryColor: "#7b7f88",
   primaryHighlight: "#60b2bf",
@@ -13,5 +14,15 @@ export default {
     color: "red",
     fontSize: 16,
     fontWeight: "bold"
+  },
+  buttonStyles: {
+    backgound: "#f56f6b",
+    color: "#fdffff",
+    disabledStyle: {
+      backgroundColor: "#252932"
+    },
+    disabledTextStyle: {
+      color: "#fdffff"
+    }
   }
 };

@@ -203,14 +203,20 @@ class ChangePasswordView extends React.Component {
           <Button
             disabled={!this.getButtonState()}
             buttonStyle={{ marginTop: 10 }}
-            backgroundColor="#03A9F4"
+            disabledStyle={commonStyles.buttonStyles.disabledStyle}
+            disabledTextStyle={commonStyles.buttonStyles.disabledTextStyle}
+            backgroundColor={commonStyles.buttonStyles.backgound}
+            color={commonStyles.buttonStyles.color}
             title="Change Password"
             loading={this.state.loading}
             onPress={() => this.changePassword()}
           />
           <Button
             buttonStyle={{ marginTop: 0 }}
-            backgroundColor="transparent"
+            disabledStyle={commonStyles.buttonStyles.disabledStyle}
+            disabledTextStyle={commonStyles.buttonStyles.disabledTextStyle}
+            backgroundColor={commonStyles.buttonStyles.backgound}
+            color={commonStyles.buttonStyles.color}
             textStyle={{ color: "#03A9F4" }}
             title="Sign In"
             onPress={() => this.goToSignIn()}

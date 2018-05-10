@@ -130,15 +130,19 @@ class HomeView extends Component {
         <View style={noCompsButtons}>
           <Button
             buttonStyle={{ marginTop: 10 }}
-            backgroundColor="white"
-            color={commonStyles.mainColor}
+            disabledStyle={commonStyles.buttonStyles.disabledStyle}
+            disabledTextStyle={commonStyles.buttonStyles.disabledTextStyle}
+            backgroundColor={commonStyles.buttonStyles.backgound}
+            color={commonStyles.buttonStyles.color}
             title="CREATE + "
             onPress={() => this.goTo("AddCompView")}
           />
           <Button
             buttonStyle={{ marginTop: 10 }}
-            backgroundColor="white"
-            color={commonStyles.mainColor}
+            disabledStyle={commonStyles.buttonStyles.disabledStyle}
+            disabledTextStyle={commonStyles.buttonStyles.disabledTextStyle}
+            backgroundColor={commonStyles.buttonStyles.backgound}
+            color={commonStyles.buttonStyles.color}
             title="JOIN + "
             onPress={() => this.goTo("JoinCompView")}
           />

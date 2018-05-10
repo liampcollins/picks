@@ -263,7 +263,10 @@ class RoundForm extends Component {
           <Button
             disabled={!this.getButtonState()}
             buttonStyle={{ marginTop: 10 }}
-            backgroundColor="#03A9F4"
+            disabledStyle={commonStyles.buttonStyles.disabledStyle}
+            disabledTextStyle={commonStyles.buttonStyles.disabledTextStyle}
+            backgroundColor={commonStyles.buttonStyles.backgound}
+            color={commonStyles.buttonStyles.color}
             title="Add + "
             loading={this.state.loading}
             onPress={() => this.saveRound()}

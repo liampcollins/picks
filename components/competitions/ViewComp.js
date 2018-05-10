@@ -20,7 +20,7 @@ class ViewComp extends Component {
   }
   goToSelection() {}
   render() {
-    const { containerStyle, headerStyle, buttonStyle } = styles;
+    const { containerStyle, headerStyle } = styles;
     const showRound = this.showRound.bind(this);
     const roundView = (
       <Round compId={this.state.competition.id} showRound={showRound} />
@@ -41,7 +41,10 @@ class ViewComp extends Component {
         <Button
           icon={{ name: "code" }}
           fontFamily="Lato"
-          buttonStyle={buttonStyle}
+          disabledStyle={commonStyles.buttonStyles.disabledStyle}
+          disabledTextStyle={commonStyles.buttonStyles.disabledTextStyle}
+          backgroundColor={commonStyles.buttonStyles.backgound}
+          color={commonStyles.buttonStyles.color}
           title={this.state.showingRound ? "GO BACK" : "MAKE SELECTION"}
           onPress={() => this.showRound()}
         />
@@ -60,10 +63,6 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     color: "white",
     textAlign: "center"
-  },
-  buttonStyle: {
-    backgroundColor: "white",
-    width: "70%"
   }
 });
 

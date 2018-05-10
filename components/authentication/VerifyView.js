@@ -153,15 +153,20 @@ class VerifyView extends React.Component {
           <Button
             disabled={!this.getButtonState()}
             buttonStyle={{ marginTop: 20 }}
-            backgroundColor="#03A9F4"
+            disabledStyle={commonStyles.buttonStyles.disabledStyle}
+            disabledTextStyle={commonStyles.buttonStyles.disabledTextStyle}
+            backgroundColor={commonStyles.buttonStyles.backgound}
+            color={commonStyles.buttonStyles.color}
             title="Verify"
             loading={this.state.loading}
             onPress={() => this.verifyUser()}
           />
           <Button
             buttonStyle={{ marginTop: 25 }}
-            backgroundColor="transparent"
-            textStyle={{ color: "#03A9F4" }}
+            disabledStyle={commonStyles.buttonStyles.disabledStyle}
+            disabledTextStyle={commonStyles.buttonStyles.disabledTextStyle}
+            backgroundColor={commonStyles.buttonStyles.backgound}
+            color={commonStyles.buttonStyles.color}
             title="Sign In"
             onPress={() => this.goToSignIn()}
           />

@@ -163,6 +163,10 @@ class Round extends Component {
           disabled={!this.getButtonState()}
           icon={{ name: "code" }}
           fontFamily="Lato"
+          disabledStyle={commonStyles.buttonStyles.disabledStyle}
+          disabledTextStyle={commonStyles.buttonStyles.disabledTextStyle}
+          backgroundColor={commonStyles.buttonStyles.backgound}
+          color={commonStyles.buttonStyles.color}
           buttonStyle={buttonStyle}
           title="SUBMIT SELECTION"
           onPress={() => this.submitSelection()}
@@ -174,8 +178,6 @@ class Round extends Component {
 
 const styles = StyleSheet.create({
   buttonStyle: {
-    backgroundColor: commonStyles.mainColor,
-    color: "white",
     alignItems: "center"
   },
   gameStyle: {

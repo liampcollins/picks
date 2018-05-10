@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { Card, Button } from "react-native-elements";
 import FAIcon from "react-native-vector-icons/FontAwesome";
-import commonStyles from "../../assets/styles/common";
+import commonStyles from "../assets/styles/common";
 
 class AboutView extends React.Component {
   static navigationOptions = ({ navigation }) => ({

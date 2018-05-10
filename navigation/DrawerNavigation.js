@@ -11,7 +11,7 @@ const createDrawerNavigation = admin =>
       headerMode: "float",
       navigationOptions: ({ navigation }) => ({
         headerStyle: { backgroundColor: commonStyles.mainColor },
-        title: "PICKS!",
+        title: "SUPERPIX!",
         headerTintColor: "white"
       })
     }

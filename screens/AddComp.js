@@ -13,6 +13,7 @@ import uniqueId from "react-native-unique-id";
 import FAIcon from "react-native-vector-icons/FontAwesome";
 import { connect } from "react-redux";
 import { userAddCompetition } from "../actions";
+import commonStyles from "../assets/styles/common";
 
 class AddComp extends Component {
   static navigationOptions = ({ navigation }) => ({
@@ -146,7 +147,10 @@ class AddComp extends Component {
           <Button
             disabled={!this.getButtonState()}
             buttonStyle={{ marginTop: 10 }}
-            backgroundColor="#03A9F4"
+            disabledStyle={commonStyles.buttonStyles.disabledStyle}
+            disabledTextStyle={commonStyles.buttonStyles.disabledTextStyle}
+            backgroundColor={commonStyles.buttonStyles.backgound}
+            color={commonStyles.buttonStyles.color}
             title="Add + "
             loading={this.state.loading}
             onPress={() => this.addCompetition()}

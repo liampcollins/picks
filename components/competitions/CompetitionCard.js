@@ -21,6 +21,10 @@ class CompetitionCard extends Component {
         <Button
           icon={{ name: "code" }}
           fontFamily="Lato"
+          disabledStyle={commonStyles.buttonStyles.disabledStyle}
+          disabledTextStyle={commonStyles.buttonStyles.disabledTextStyle}
+          backgroundColor={commonStyles.buttonStyles.backgound}
+          color={commonStyles.buttonStyles.color}
           buttonStyle={buttonStyle}
           title="VIEW COMPETITION"
           onPress={() => this.props.showComp(this.props.comp.id)}
@@ -41,8 +45,7 @@ const styles = StyleSheet.create({
     borderRadius: 0,
     marginLeft: 0,
     marginRight: 0,
-    marginBottom: 0,
-    backgroundColor: commonStyles.mainColor
+    marginBottom: 0
   }
 });
 

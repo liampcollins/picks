@@ -128,15 +128,20 @@ class ResetPasswordView extends React.Component {
           <Button
             disabled={!this.getButtonState()}
             buttonStyle={{ marginTop: 10 }}
-            backgroundColor="#03A9F4"
+            disabledStyle={commonStyles.buttonStyles.disabledStyle}
+            disabledTextStyle={commonStyles.buttonStyles.disabledTextStyle}
+            backgroundColor={commonStyles.buttonStyles.backgound}
+            color={commonStyles.buttonStyles.color}
             title="Reset Password"
             loading={this.state.loading}
             onPress={() => this.resetPassword()}
           />
           <Button
             buttonStyle={{ marginTop: 0 }}
-            backgroundColor="transparent"
-            textStyle={{ color: "#03A9F4" }}
+            disabledStyle={commonStyles.buttonStyles.disabledStyle}
+            disabledTextStyle={commonStyles.buttonStyles.disabledTextStyle}
+            backgroundColor={commonStyles.buttonStyles.backgound}
+            color={commonStyles.buttonStyles.color}
             title="Sign In"
             onPress={() => this.goToSignIn()}
           />
@@ -148,7 +153,7 @@ class ResetPasswordView extends React.Component {
 
 const styles = {
   container: {
-    paddingVertical: 30,
+    paddingVertical: 35,
     backgroundColor: commonStyles.mainColor
   }
 };

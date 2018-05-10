@@ -103,7 +103,8 @@ export class SignInView extends Component {
       // This call to setTimeout is required to give the view time to render
       const updateUser = this.props.userLoggedIn;
       setTimeout(() => {
-        Auth.signIn(this.state.email, this.state.password)
+        Auth.signIn("liampcollins@gmail.com", "Test123!")
+          // Auth.signIn(this.state.email, this.state.password)
           .then(res => {
             Auth.currentUserInfo().then(user => {
               updateUser(user);
@@ -121,7 +122,7 @@ export class SignInView extends Component {
   }
 
   render() {
-    const { container } = styles;
+    const { container, formWrapperStyle } = styles;
     return (
       <KeyboardAwareScrollView style={container}>
         <View style={{ alignItems: "center" }}>
@@ -137,7 +138,7 @@ export class SignInView extends Component {
             </Text>
           )}
         </View>
-        <Card>
+        <View style={formWrapperStyle}>
           <FormLabel>Email</FormLabel>
           <FormInput
             placeholder="Email..."
@@ -161,26 +162,33 @@ export class SignInView extends Component {
           <Button
             disabled={!this.getButtonState()}
             buttonStyle={{ marginTop: 20 }}
-            backgroundColor="#03A9F4"
+            disabledStyle={commonStyles.buttonStyles.disabledStyle}
+            disabledTextStyle={commonStyles.buttonStyles.disabledTextStyle}
+            backgroundColor={commonStyles.buttonStyles.backgound}
+            color={commonStyles.buttonStyles.color}
             title="Sign In"
             loading={this.state.loading}
             onPress={() => this.signInUser()}
           />
           <Button
             buttonStyle={{ marginTop: 10 }}
-            backgroundColor="transparent"
-            textStyle={{ color: "#03A9F4" }}
+            disabledStyle={commonStyles.buttonStyles.disabledStyle}
+            disabledTextStyle={commonStyles.buttonStyles.disabledTextStyle}
+            backgroundColor={commonStyles.buttonStyles.backgound}
+            color={commonStyles.buttonStyles.color}
             title="Register"
             onPress={() => this.goToRegister()}
           />
           <Button
-            buttonStyle={{ marginTop: 0 }}
-            backgroundColor="transparent"
-            textStyle={{ color: "#03A9F4" }}
+            buttonStyle={{ marginTop: 10 }}
+            disabledStyle={commonStyles.buttonStyles.disabledStyle}
+            disabledTextStyle={commonStyles.buttonStyles.disabledTextStyle}
+            backgroundColor={commonStyles.buttonStyles.backgound}
+            color={commonStyles.buttonStyles.color}
             title="Forgot Password"
             onPress={() => this.goToForgotPassword()}
           />
-        </Card>
+        </View>
       </KeyboardAwareScrollView>
     );
   }
@@ -188,8 +196,12 @@ export class SignInView extends Component {
 
 const styles = {
   container: {
-    paddingVertical: 30,
+    paddingVertical: 50,
     backgroundColor: commonStyles.mainColor
+  },
+  formWrapperStyle: {
+    width: "90%",
+    paddingLeft: "5%"
   }
 };
 
