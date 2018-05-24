@@ -7,6 +7,7 @@ import {
   View
 } from "react-native";
 import { Button } from "react-native-elements";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { connect } from "react-redux";
 import FAIcon from "react-native-vector-icons/FontAwesome";
 import { API } from "aws-amplify";
@@ -42,7 +43,7 @@ class HomeView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedComp: null,
+      selectedComp: 1,
       loading: false
     };
   }
@@ -121,42 +122,47 @@ class HomeView extends Component {
 
     const noCompsView = (
       <View style={noCompsContainer}>
-        <View style={noCompsTextContainer}>
-          <Text style={noCompsText}>
-            You currently have no active competitions. Create or join one to get
-            started!
-          </Text>
-        </View>
-        <View style={noCompsButtons}>
-          <Button
-            buttonStyle={{ marginTop: 10 }}
-            disabledStyle={commonStyles.buttonStyles.disabledStyle}
-            disabledTextStyle={commonStyles.buttonStyles.disabledTextStyle}
-            backgroundColor={commonStyles.buttonStyles.backgound}
-            color={commonStyles.buttonStyles.color}
-            title="CREATE + "
-            onPress={() => this.goTo("AddCompView")}
-          />
-          <Button
-            buttonStyle={{ marginTop: 10 }}
-            disabledStyle={commonStyles.buttonStyles.disabledStyle}
-            disabledTextStyle={commonStyles.buttonStyles.disabledTextStyle}
-            backgroundColor={commonStyles.buttonStyles.backgound}
-            color={commonStyles.buttonStyles.color}
-            title="JOIN + "
-            onPress={() => this.goTo("JoinCompView")}
-          />
-        </View>
+        <KeyboardAwareScrollView style={{ flex: 1, alignItems: "stretch" }}>
+          <View style={noCompsTextContainer}>
+            <Text style={noCompsText}>
+              You currently have no active competitions. Create or join one to
+              get started!
+            </Text>
+          </View>
+          <View style={noCompsButtons}>
+            <Button
+              buttonStyle={{ marginTop: 10 }}
+              disabledStyle={commonStyles.buttonStyles.disabledStyle}
+              disabledTextStyle={commonStyles.buttonStyles.disabledTextStyle}
+              backgroundColor={commonStyles.buttonStyles.backgound}
+              color={commonStyles.buttonStyles.color}
+              title="CREATE + "
+              onPress={() => this.goTo("AddCompView")}
+            />
+            <Button
+              buttonStyle={{ marginTop: 10 }}
+              disabledStyle={commonStyles.buttonStyles.disabledStyle}
+              disabledTextStyle={commonStyles.buttonStyles.disabledTextStyle}
+              backgroundColor={commonStyles.buttonStyles.backgound}
+              color={commonStyles.buttonStyles.color}
+              title="JOIN + "
+              onPress={() => this.goTo("JoinCompView")}
+            />
+          </View>
+        </KeyboardAwareScrollView>
       </View>
     );
     const loadingView = <Text style={noCompsText}>Fetching your data....</Text>;
     return (
       <View style={homeContainer}>
-        {this.state.loading
+        {/* {this.state.loading
           ? loadingView
           : this.props.competitions.length
-            ? this.state.selectedComp ? selectedCompComponent : compsList
-            : noCompsView}
+            ? this.state.selectedComp
+              ? selectedCompComponent
+              : compsList
+            : noCompsView} */}
+        {this.state.loading ? loadingView : selectedCompComponent}
       </View>
     );
   }

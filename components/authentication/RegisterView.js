@@ -141,11 +141,16 @@ class RegisterView extends React.Component {
   }
 
   render() {
-    const { container, formContainer } = styles;
+    const {
+      authContainer,
+      authFormContainer,
+      authErrorStyle,
+      buttonStyles
+    } = commonStyles;
     return (
-      <View style={container}>
+      <View style={authContainer}>
         <KeyboardAwareScrollView>
-          <View style={{ alignItems: "center" }}>
+          <View style={{ alignItems: "center", paddingTop: 30 }}>
             <Image
               source={require("../../assets/icons/app-icon.png")}
               style={{ width: 75, height: 75 }}
@@ -153,12 +158,10 @@ class RegisterView extends React.Component {
           </View>
           {this.getErrorDisplay() && (
             <View style={{ alignItems: "center" }}>
-              <Text style={commonStyles.authErrorStyle}>
-                {this.getErrorDisplay()}
-              </Text>
+              <Text style={authErrorStyle}>{this.getErrorDisplay()}</Text>
             </View>
           )}
-          <View style={formContainer}>
+          <View style={authFormContainer}>
             <FormLabel>Username</FormLabel>
             <FormInput
               placeholder="Username..."
@@ -199,29 +202,29 @@ class RegisterView extends React.Component {
             <Button
               disabled={!this.getButtonState()}
               buttonStyle={{ marginTop: 10 }}
-              disabledStyle={commonStyles.buttonStyles.disabledStyle}
-              disabledTextStyle={commonStyles.buttonStyles.disabledTextStyle}
-              backgroundColor={commonStyles.buttonStyles.backgound}
-              color={commonStyles.buttonStyles.color}
+              disabledStyle={buttonStyles.disabledStyle}
+              disabledTextStyle={buttonStyles.disabledTextStyle}
+              backgroundColor={buttonStyles.backgound}
+              color={buttonStyles.color}
               title="Register"
               loading={this.state.loading}
               onPress={() => this.registerUser()}
             />
             <Button
               buttonStyle={{ marginTop: 10 }}
-              disabledStyle={commonStyles.buttonStyles.disabledStyle}
-              disabledTextStyle={commonStyles.buttonStyles.disabledTextStyle}
-              backgroundColor={commonStyles.buttonStyles.backgound}
-              color={commonStyles.buttonStyles.color}
+              disabledStyle={buttonStyles.disabledStyle}
+              disabledTextStyle={buttonStyles.disabledTextStyle}
+              backgroundColor={buttonStyles.backgound}
+              color={buttonStyles.color}
               title="Sign In"
               onPress={() => this.goTo("loginScreen")}
             />
             <Button
               buttonStyle={{ marginTop: 10 }}
-              disabledStyle={commonStyles.buttonStyles.disabledStyle}
-              disabledTextStyle={commonStyles.buttonStyles.disabledTextStyle}
-              backgroundColor={commonStyles.buttonStyles.backgound}
-              color={commonStyles.buttonStyles.color}
+              disabledStyle={buttonStyles.disabledStyle}
+              disabledTextStyle={buttonStyles.disabledTextStyle}
+              backgroundColor={buttonStyles.backgound}
+              color={buttonStyles.color}
               title="Confirm Registration"
               onPress={() => this.goTo("verifyScreen")}
             />
@@ -231,17 +234,5 @@ class RegisterView extends React.Component {
     );
   }
 }
-const styles = {
-  container: {
-    // flex: 1,
-    paddingTop: 50,
-    paddingBottom: 50,
-    backgroundColor: commonStyles.mainColor
-  },
-  formContainer: {
-    width: "90%",
-    paddingLeft: "5%"
-  }
-};
 
 export default RegisterView;

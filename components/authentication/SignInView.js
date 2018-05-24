@@ -80,20 +80,11 @@ export class SignInView extends Component {
     return null;
   }
 
-  goToRegister() {
+  goTo(screen) {
     const action = {
       type: "Navigation/RESET",
       index: 0,
-      actions: [{ type: "Navigate", routeName: "signupScreen" }]
-    };
-    this.props.navigation.dispatch(action);
-  }
-
-  goToForgotPassword() {
-    const action = {
-      type: "Navigation/RESET",
-      index: 0,
-      actions: [{ type: "Navigate", routeName: "Reset" }]
+      actions: [{ type: "Navigate", routeName: screen }]
     };
     this.props.navigation.dispatch(action);
   }
@@ -103,8 +94,7 @@ export class SignInView extends Component {
       // This call to setTimeout is required to give the view time to render
       const updateUser = this.props.userLoggedIn;
       setTimeout(() => {
-        Auth.signIn("liampcollins@gmail.com", "Test123!")
-          // Auth.signIn(this.state.email, this.state.password)
+        Auth.signIn(this.state.email, this.state.password)
           .then(res => {
             Auth.currentUserInfo().then(user => {
               updateUser(user);
@@ -122,88 +112,83 @@ export class SignInView extends Component {
   }
 
   render() {
-    const { container, formWrapperStyle } = styles;
-    return (
-      <KeyboardAwareScrollView style={container}>
-        <View style={{ alignItems: "center" }}>
-          <Image
-            source={require("../../assets/icons/app-icon.png")}
-            style={{ width: 75, height: 75 }}
-          />
-        </View>
-        <View style={{ alignItems: "center" }}>
-          {this.getErrorDisplay() && (
-            <Text style={commonStyles.authErrorStyle}>
-              {this.getErrorDisplay()}
-            </Text>
-          )}
-        </View>
-        <View style={formWrapperStyle}>
-          <FormLabel>Email</FormLabel>
-          <FormInput
-            placeholder="Email..."
-            value={this.state.email}
-            onChangeText={text => this.setFieldState("email", text)}
-          />
-          <FormValidationMessage>
-            {this.state.emailValidationError}
-          </FormValidationMessage>
-          <FormLabel>Password</FormLabel>
-          <FormInput
-            secureTextEntry
-            placeholder="Password..."
-            value={this.state.password}
-            onChangeText={text => this.setFieldState("password", text)}
-          />
-          <FormValidationMessage>
-            {this.state.passwordValidationError}
-          </FormValidationMessage>
+    const {
+      authContainer,
+      authFormContainer,
+      authErrorStyle,
+      buttonStyles
+    } = commonStyles;
 
-          <Button
-            disabled={!this.getButtonState()}
-            buttonStyle={{ marginTop: 20 }}
-            disabledStyle={commonStyles.buttonStyles.disabledStyle}
-            disabledTextStyle={commonStyles.buttonStyles.disabledTextStyle}
-            backgroundColor={commonStyles.buttonStyles.backgound}
-            color={commonStyles.buttonStyles.color}
-            title="Sign In"
-            loading={this.state.loading}
-            onPress={() => this.signInUser()}
-          />
-          <Button
-            buttonStyle={{ marginTop: 10 }}
-            disabledStyle={commonStyles.buttonStyles.disabledStyle}
-            disabledTextStyle={commonStyles.buttonStyles.disabledTextStyle}
-            backgroundColor={commonStyles.buttonStyles.backgound}
-            color={commonStyles.buttonStyles.color}
-            title="Register"
-            onPress={() => this.goToRegister()}
-          />
-          <Button
-            buttonStyle={{ marginTop: 10 }}
-            disabledStyle={commonStyles.buttonStyles.disabledStyle}
-            disabledTextStyle={commonStyles.buttonStyles.disabledTextStyle}
-            backgroundColor={commonStyles.buttonStyles.backgound}
-            color={commonStyles.buttonStyles.color}
-            title="Forgot Password"
-            onPress={() => this.goToForgotPassword()}
-          />
-        </View>
-      </KeyboardAwareScrollView>
+    return (
+      <View style={authContainer}>
+        <KeyboardAwareScrollView>
+          <View style={{ alignItems: "center", paddingTop: 30 }}>
+            <Image
+              source={require("../../assets/icons/app-icon.png")}
+              style={{ width: 75, height: 75 }}
+            />
+          </View>
+          <View style={{ alignItems: "center" }}>
+            {this.getErrorDisplay() && (
+              <Text style={authErrorStyle}>{this.getErrorDisplay()}</Text>
+            )}
+          </View>
+          <View style={authFormContainer}>
+            <FormLabel>Email</FormLabel>
+            <FormInput
+              placeholder="Email..."
+              value={this.state.email}
+              onChangeText={text => this.setFieldState("email", text)}
+            />
+            <FormValidationMessage>
+              {this.state.emailValidationError}
+            </FormValidationMessage>
+            <FormLabel>Password</FormLabel>
+            <FormInput
+              secureTextEntry
+              placeholder="Password..."
+              value={this.state.password}
+              onChangeText={text => this.setFieldState("password", text)}
+            />
+            <FormValidationMessage>
+              {this.state.passwordValidationError}
+            </FormValidationMessage>
+
+            <Button
+              // disabled={!this.getButtonState()}
+              buttonStyle={{ marginTop: 20 }}
+              disabledStyle={buttonStyles.disabledStyle}
+              disabledTextStyle={buttonStyles.disabledTextStyle}
+              backgroundColor={buttonStyles.backgound}
+              color={buttonStyles.color}
+              title="Sign In"
+              loading={this.state.loading}
+              onPress={() => this.signInUser()}
+            />
+            <Button
+              buttonStyle={{ marginTop: 10 }}
+              disabledStyle={buttonStyles.disabledStyle}
+              disabledTextStyle={buttonStyles.disabledTextStyle}
+              backgroundColor={buttonStyles.backgound}
+              color={buttonStyles.color}
+              title="Register"
+              onPress={() => this.goTo("signupScreen")}
+            />
+            <Button
+              buttonStyle={{ marginTop: 10 }}
+              disabledStyle={buttonStyles.disabledStyle}
+              disabledTextStyle={buttonStyles.disabledTextStyle}
+              backgroundColor={buttonStyles.backgound}
+              color={buttonStyles.color}
+              title="Forgot Password"
+              onPress={() => this.goTo("resetPasswordScreen")}
+            />
+          </View>
+        </KeyboardAwareScrollView>
+      </View>
     );
   }
 }
-
-const styles = {
-  container: {
-    paddingVertical: 50,
-    backgroundColor: commonStyles.mainColor
-  },
-  formWrapperStyle: {
-    width: "90%",
-    paddingLeft: "5%"
-  }
-};
 
 const mapStateToProps = ({ user }) => ({ user });
 

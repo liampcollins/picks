@@ -9,9 +9,13 @@ import SignOutView from "../components/authentication/SignOutView";
 const SCREEN_WIDTH = Dimensions.get("window").width;
 
 const CustomDrawerContentComponent = props => (
-  <View style={{ flex: 1, backgroundColor: "red" }}>
+  <View style={{ flex: 1 }}>
     <View
-      style={{ marginTop: 40, justifyContent: "center", alignItems: "center" }}
+      style={{
+        marginTop: 40,
+        justifyContent: "center",
+        alignItems: "center"
+      }}
     >
       <Image
         source={require("../assets/icons/app-icon.png")}
@@ -39,10 +43,10 @@ const createDrawer = signedIn =>
     {
       initialRouteName: "Main",
       contentOptions: {
-        activeTintColor: "#03A9F4"
-      },
-      drawerWidth: SCREEN_WIDTH * 0.2,
-      contentComponent: CustomDrawerContentComponent
+        // activeTintColor: "#03A9F4"
+      }
+      // drawerWidth: SCREEN_WIDTH * 0.2,
+      // contentComponent: CustomDrawerContentComponent,
     }
   );
 

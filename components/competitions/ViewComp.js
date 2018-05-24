@@ -1,17 +1,23 @@
 import React, { Component } from "react";
-import { View, Button, StyleSheet } from "react-native";
-import { Text } from "react-native-elements";
+import { View, StyleSheet } from "react-native";
+import { Text, Button } from "react-native-elements";
 import { connect } from "react-redux";
 import LeaderBoard from "./LeaderBoard";
 import Round from "./Round";
-
+import commonStyles from "../../assets/styles/common";
+4;
 class ViewComp extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      competition: this.props.competitions.filter(
-        c => c.id === this.props.compId
-      )[0],
+      // competition: this.props.competitions.filter(
+      //   c => c.id === this.props.compId
+      // )[0],
+      competition: {
+        id: 1,
+        name: "test1",
+        participants: [1, 2]
+      },
       showingRound: false
     };
   }
@@ -23,24 +29,26 @@ class ViewComp extends Component {
     const { containerStyle, headerStyle } = styles;
     const showRound = this.showRound.bind(this);
     const roundView = (
-      <Round compId={this.state.competition.id} showRound={showRound} />
+      <Round compId={1} showRound={showRound} />
+      // <Round compId={this.state.competition.id} showRound={showRound} />
     );
-    const leaderBoardView = (
-      <LeaderBoard
-        style={leaderboardStyle}
-        showRound={showRound}
-        users={this.state.competition.participants}
-      />
-    );
+    // const leaderBoardView = (
+    //   <LeaderBoard
+    //     // style={leaderboardStyle}
+    //     showRound={showRound}
+    //     users={this.state.competition.participants}
+    //   />
+    // );
     const codeInfo = <Text>Competition Code {this.state.competition.id}</Text>;
     return (
       <View style={containerStyle}>
         <Text style={headerStyle}>{this.state.competition.name}</Text>
         {this.props.user.admin && codeInfo}
-        {this.state.showingRound ? roundView : leaderBoardView}
+        {/* {this.state.showingRound ? roundView : leaderBoardView} */}
+        {roundView}
         <Button
-          icon={{ name: "code" }}
-          fontFamily="Lato"
+          icon={{ name: "visibility" }}
+          buttonStyle={{ marginTop: 10 }}
           disabledStyle={commonStyles.buttonStyles.disabledStyle}
           disabledTextStyle={commonStyles.buttonStyles.disabledTextStyle}
           backgroundColor={commonStyles.buttonStyles.backgound}

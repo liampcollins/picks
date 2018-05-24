@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { Card } from "react-native-elements";
 import { connect } from "react-redux";
+import commonStyles from "../../assets/styles/common";
 
 class LeaderBoard extends Component {
   constructor(props) {
@@ -15,9 +16,15 @@ class LeaderBoard extends Component {
     this.state = {};
   }
   render() {
-    const { rowStyle, headerStyle } = styles;
+    const { rowStyle, headerStyle, dataStyle } = styles;
+    const { fontMainColor, thirdColor, secondaryColor } = commonStyles;
     return (
-      <Card title="LEADERBOARD">
+      <Card
+        title="LEADERBOARD"
+        titleStyle={{ color: fontMainColor }}
+        dividerStyle={{ backgroundColor: thirdColor }}
+        containerStyle={{ backgroundColor: secondaryColor }}
+      >
         <View style={rowStyle}>
           <Text style={headerStyle}>Player</Text>
           <Text style={headerStyle}>Score</Text>
@@ -27,9 +34,9 @@ class LeaderBoard extends Component {
           return (
             <View key={i} style={rowStyle}>
               <TouchableHighlight onPress={this.props.showRound}>
-                <Text>{this.props.users[u].name}</Text>
+                <Text style={dataStyle}>{this.props.users[u].name}</Text>
               </TouchableHighlight>
-              <Text>{this.props.users[u].score}</Text>
+              <Text style={dataStyle}>{this.props.users[u].score}</Text>
             </View>
           );
         })}
@@ -47,7 +54,11 @@ const styles = StyleSheet.create({
   },
   headerStyle: {
     fontWeight: "bold",
-    textDecorationLine: "underline"
+    textDecorationLine: "underline",
+    color: commonStyles.fontMainColor
+  },
+  dataStyle: {
+    color: commonStyles.fontMainColor
   }
 });
 

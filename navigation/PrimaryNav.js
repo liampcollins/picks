@@ -11,7 +11,7 @@ const createNav = (signedIn, admin) =>
     {
       headerMode: "none",
       title: "Main",
-      initialRouteName: signedIn ? "drawerStack" : "loginStack"
+      initialRouteName: !signedIn ? "drawerStack" : "loginStack"
     }
   );
 
