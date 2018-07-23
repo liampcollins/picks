@@ -122,7 +122,7 @@ class HomeView extends Component {
 
     const noCompsView = (
       <View style={noCompsContainer}>
-        <KeyboardAwareScrollView style={{ flex: 1, alignItems: "stretch" }}>
+        <View style={{ flex: 1 }}>
           <View style={noCompsTextContainer}>
             <Text style={noCompsText}>
               You currently have no active competitions. Create or join one to
@@ -149,21 +149,23 @@ class HomeView extends Component {
               onPress={() => this.goTo("JoinCompView")}
             />
           </View>
-        </KeyboardAwareScrollView>
+        </View>
       </View>
     );
     const loadingView = <Text style={noCompsText}>Fetching your data....</Text>;
     return (
-      <View style={homeContainer}>
-        {/* {this.state.loading
+      <KeyboardAwareScrollView>
+        <View style={homeContainer}>
+          {/* {this.state.loading
           ? loadingView
           : this.props.competitions.length
             ? this.state.selectedComp
               ? selectedCompComponent
               : compsList
             : noCompsView} */}
-        {this.state.loading ? loadingView : selectedCompComponent}
-      </View>
+          {this.state.loading ? loadingView : selectedCompComponent}
+        </View>
+      </KeyboardAwareScrollView>
     );
   }
 
@@ -213,6 +215,7 @@ const mapStateToProps = ({ user, competitions, rounds }) => ({
   rounds
 });
 
-export default connect(mapStateToProps, { userGetCompetitions, userGetRounds })(
-  HomeView
-);
+export default connect(
+  mapStateToProps,
+  { userGetCompetitions, userGetRounds }
+)(HomeView);

@@ -107,14 +107,12 @@ class Round extends Component {
 
   render() {
     const {
-      buttonStyle,
       errorStyle,
       gameStyle,
       inputRow,
       inputContainer,
       inputStyle,
-      labelStyle,
-      rightLabel
+      labelStyle
     } = styles;
     const { fontMainColor, thirdColor, secondaryColor } = commonStyles;
 
@@ -135,7 +133,7 @@ class Round extends Component {
       ]
     };
     return (
-      <View style={{ flex: 1 }}>
+      <View>
         <Card
           title={round.name}
           titleStyle={{ color: fontMainColor, fontSize: 20 }}
@@ -221,7 +219,7 @@ class Round extends Component {
                     />
                   </View>
                 </View>
-                <Text style={[labelStyle, rightLabel]}>{g.team2}</Text>
+                <Text style={labelStyle}>{g.team2}</Text>
               </View>
             );
           })}
@@ -233,7 +231,6 @@ class Round extends Component {
             disabledTextStyle={commonStyles.buttonStyles.disabledTextStyle}
             backgroundColor={commonStyles.buttonStyles.backgound}
             color={commonStyles.buttonStyles.color}
-            buttonStyle={buttonStyle}
             title="SUBMIT SELECTION"
             onPress={() => this.submitSelection()}
           />
@@ -244,9 +241,6 @@ class Round extends Component {
 }
 
 const styles = StyleSheet.create({
-  buttonStyle: {
-    // alignItems: "center"
-  },
   gameStyle: {
     padding: 20
   },
@@ -271,9 +265,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: commonStyles.fontMainColor
   },
-  rightLabel: {
-    // textAlign: "right"
-  },
   errorStyle: {
     paddingLeft: 10,
     paddingRight: 10,
@@ -286,4 +277,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = ({ rounds }) => ({ rounds });
 
-export default connect(mapStateToProps, {})(Round);
+export default connect(
+  mapStateToProps,
+  {}
+)(Round);

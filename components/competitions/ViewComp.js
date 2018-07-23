@@ -63,7 +63,7 @@ class ViewComp extends Component {
 
 const styles = StyleSheet.create({
   containerStyle: {
-    flex: 1
+    // flex: 1
   },
   headerStyle: {
     fontSize: 30,
@@ -76,4 +76,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = ({ competitions, user }) => ({ competitions, user });
 
-export default connect(mapStateToProps, {})(ViewComp);
+export default connect(
+  mapStateToProps,
+  {}
+)(ViewComp);
