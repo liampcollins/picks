@@ -1,6 +1,10 @@
 export const USER_LOGGED_IN = "user_logged_in";
 export const USER_JOIN_COMPETITION = "user_join_competition";
 export const USER_ADD_COMPETITION = "user_add_competition";
-export const USER_GET_COMPETITIONS = "user_get_competitions";
-export const USER_GET_ROUNDS = "user_get_rounds";
 export const USER_GET_TEAMS = "user_get_teams";
+export const GET_COMPETITIONS_REQUEST = "get_competitions_request";
+export const GET_COMPETITIONS_SUCCESS = "get_competitions_success";
+export const GET_COMPETITIONS_FAILURE = "get_competitions_failure";
+export const GET_ROUNDS_REQUEST = "get_rounds_request";
+export const GET_ROUNDS_SUCCESS = "get_rounds_success";
+export const GET_ROUNDS_FAILURE = "get_rounds_failure";

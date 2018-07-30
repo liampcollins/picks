@@ -3,10 +3,12 @@ import user from "./user_reducer";
 import competitions from "./competitions_reducer";
 import rounds from "./rounds_reducer";
 import teams from "./teams_reducer";
+import loading from "./loading_reducer";
 
 export default combineReducers({
   user,
   competitions,
   rounds,
-  teams
+  teams,
+  loading
 });

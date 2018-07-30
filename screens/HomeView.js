@@ -12,7 +12,8 @@ import { connect } from "react-redux";
 import FAIcon from "react-native-vector-icons/FontAwesome";
 import { API } from "aws-amplify";
 import uniqueId from "react-native-unique-id";
-import { userGetCompetitions, userGetRounds } from "../actions";
+import { getCompetitions, getRounds } from "../actions";
+import { createLoadingSelector } from "../../api/selectors";
 import CompView from "../components/competitions/ViewComp";
 import CompetitionCard from "../components/competitions/CompetitionCard";
 import commonStyles from "../assets/styles/common";
@@ -49,26 +50,11 @@ class HomeView extends Component {
   }
 
   getCompetitions() {
-    let apiName = "CompetitionsCRUD";
-    let path = "/Competitions";
-    let comps = [];
-    return API.get(apiName, path).then(response => {
-      comps = response.filter(
-        c => c.participantIds.indexOf(this.props.user.id) >= 0
-      );
-      this.props.userGetCompetitions(comps);
-    });
+    return this.props.getCompetitions();
   }
 
   getRounds() {
-    let apiName = "RoundsCRUD";
-    let path = "/Rounds/1";
-    let rounds = [];
-    return API.get(apiName, path).then(response => {
-      rounds = response;
-      this.props.userGetRounds(rounds);
-      this.setState({ loading: false });
-    });
+    return this.props.getCompetitions();
   }
 
   componentDidMount() {
@@ -209,13 +195,17 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = ({ user, competitions, rounds }) => ({
-  user,
-  competitions,
-  rounds
+const loadingSelector = createLoadingSelector([
+  "get_competitions",
+  "get_rounds"
+]);
+
+const mapStateToProps = state => ({
+  competitions: state.competitions,
+  isFetching: loadingSelector(state)
 });
 
 export default connect(
   mapStateToProps,
-  { userGetCompetitions, userGetRounds }
+  { getCompetitions, getRounds }
 )(HomeView);

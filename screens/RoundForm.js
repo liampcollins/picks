@@ -12,7 +12,7 @@ import { API } from "aws-amplify";
 import uniqueId from "react-native-unique-id";
 import FAIcon from "react-native-vector-icons/FontAwesome";
 import { connect } from "react-redux";
-import { addRound, userGetTeams } from "../actions";
+import { addRound, getTeams } from "../actions";
 import GameForm from "../components/rounds/GameForm";
 import DatePicker from "react-native-datepicker";
 import commonStyles from "../assets/styles/common";
@@ -67,7 +67,7 @@ class RoundForm extends Component {
           t.value = t.name;
           return t;
         });
-        this.props.userGetTeams(teams);
+        this.props.getTeams(teams);
       })
       .catch(err => {
         console.log("API ERROR", err);
@@ -307,4 +307,7 @@ const styles = {
 
 const mapStateToProps = ({ competitions, teams }) => ({ competitions, teams });
 
-export default connect(mapStateToProps, { addRound, userGetTeams })(RoundForm);
+export default connect(
+  mapStateToProps,
+  { addRound, getTeams }
+)(RoundForm);
